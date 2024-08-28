@@ -2,17 +2,11 @@
 #define UIMANAGER_H
 
 #include <QObject>
+#include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickView>
 #include <QtQml>
-
-namespace {
-const QString kMainQmlName = "qrc:/qml/main/Minesweeper.qml";
-const QString kAppTitle = "Minesweeper";
-const int kDefaultWidth = 350;
-const int kDefaultHeight = 500;
-} // namespace
 
 namespace minesweeper {
 
@@ -29,7 +23,7 @@ private:
     void qmlRegister();
     void loadUi();
 
-    QQuickView *view_;
+    QQmlApplicationEngine *engine_;
 };
 
 } // namespace minesweeper

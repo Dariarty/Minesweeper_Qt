@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main/Minesweeper.qml</file>
-        <file>qtquickcontrols2.conf</file>
+        <file>qml/areas/MinesweeperMenuBar.qml</file>
     </qresource>
 </RCC>
