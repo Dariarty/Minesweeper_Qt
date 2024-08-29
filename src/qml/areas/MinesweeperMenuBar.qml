@@ -6,10 +6,10 @@ import QtQuick.Controls.Material 2.12
 MenuBar {
 
       Menu {
-        title: "Game"
+        title: qsTr("Game")
 
         Menu {
-          title: "Change difficulty"
+          title: qsTr("Change difficulty")
 
           MenuItem {
             text: "Beginner "

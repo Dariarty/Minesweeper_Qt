@@ -3,6 +3,9 @@
 
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QSharedPointer>
+
+#include "Translator.h"
 
 namespace minesweeper {
 
@@ -17,7 +20,10 @@ public:
 
 private:
     void qmlRegister();
+    void initTranslator();
     void loadUi();
+
+    QSharedPointer<Translator> translator_;
 
     QQmlApplicationEngine *engine_;
 };
