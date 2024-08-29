@@ -32,7 +32,7 @@ ApplicationWindow{
 
 }
 
-// Заготовка ячейки поля
+// Field cell template
 
 // Button{
 //     height: 40
