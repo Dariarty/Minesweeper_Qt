@@ -4,7 +4,7 @@ namespace minesweeper {
 
 UiManager::UiManager(QObject *parent)
     : QObject(parent)
-    , engine_(new QQmlApplicationEngine())
+    , engine_(new QQmlApplicationEngine(this))
 {
     qmlRegister();
     loadUi();

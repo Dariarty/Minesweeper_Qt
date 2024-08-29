@@ -1,7 +1,4 @@
 #include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQuickView>
-#include <QSharedPointer>
 
 #include "UiManager.h"
 

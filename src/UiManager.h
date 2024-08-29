@@ -1,12 +1,8 @@
 #ifndef UIMANAGER_H
 #define UIMANAGER_H
 
-#include <QObject>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QQmlEngine>
-#include <QQuickView>
-#include <QtQml>
 
 namespace minesweeper {
 
