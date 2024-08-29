@@ -1,4 +1,5 @@
 #include <QGuiApplication>
+#include <QIcon>
 
 #include "UiManager.h"
 
