@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>qml/main/Minesweeper.qml</file>
         <file>qml/areas/MinesweeperMenuBar.qml</file>
+        <file>qml/components/DifficultyMenuItemDelegate.qml</file>
     </qresource>
 </RCC>

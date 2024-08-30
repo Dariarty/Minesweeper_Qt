@@ -13,11 +13,11 @@ ApplicationWindow{
     property int rootWidth: 360
 
     height: rootHeight
-    minimumHeight: rootHeight
-    maximumHeight: rootHeight
+    //minimumHeight: rootHeight
+    //maximumHeight: rootHeight
     width: rootWidth
-    minimumWidth: rootWidth
-    maximumWidth: rootWidth
+    //minimumWidth: rootWidth
+    //maximumWidth: rootWidth
 
     visible: true
 
