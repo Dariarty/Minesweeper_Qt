@@ -6,17 +6,10 @@ import QtQuick.Controls.Material 2.12
 MenuItem {
     id: menuItem
 
-    text: name
-
     implicitWidth: 200
     implicitHeight: 48
 
     checkable: true
-
-    ButtonGroup.group: difficultyButtonGroup
-    onTriggered: {
-        console.log(name)
-    }
 
     indicator: Item {
         id: checkableItemIndicator

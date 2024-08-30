@@ -17,6 +17,7 @@ UiManager::UiManager(QObject *parent)
 void UiManager::qmlRegister()
 {
     engine_->rootContext()->setContextProperty("UiManager", this);
+    engine_->rootContext()->setContextProperty("Translator", translator_.data());
 }
 
 void UiManager::initTranslator()

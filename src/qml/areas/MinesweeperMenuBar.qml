@@ -24,19 +24,46 @@ MenuBar{
         id: difficultyButtonGroup
     }
 
+    ButtonGroup{
+        id: languageButtonGroup
+    }
+
     ListModel{
         id: difficultyModesModel
 
         ListElement{
-            name: "Beginner"
+            name: qsTr("Beginner")
+            fieldWidth: 9
+            fieldHeight: 9
+            mines: 10
         }
 
         ListElement{
-            name: "Intermediate"
+            name: qsTr("Intermediate")
+            fieldWidth: 16
+            fieldHeight: 16
+            mines: 40
         }
 
         ListElement{
-            name: "Expert"
+            name: qsTr("Expert")
+            fieldWidth: 30
+            fieldHeight: 16
+            mines: 99
+        }
+    }
+
+    ListModel{
+        id: languagesModel
+
+        ListElement{
+            name: "English"
+            lang: "en_US"
+        }
+
+        ListElement{
+            name: "Русский"
+            lang: "ru_RU"
         }
     }
 
@@ -54,9 +81,15 @@ MenuBar{
             bottomPadding: 0
 
             Instantiator{
-                id: customModeInstantiator
+                id: difficultyModeInstantiator
                 model: difficultyModesModel
-                delegate: DifficultyMenuItemDelegate { }
+                delegate: CheckableMenuItem {
+                    ButtonGroup.group: difficultyButtonGroup
+                    onTriggered: {
+                        console.log(name)
+                    }
+                    text: name
+                }
 
                 onObjectAdded: (index, object) => difficultyMenu.insertItem(index, object)
                 onObjectRemoved: (index, object) => difficultyMenu.removeItem(object)
@@ -79,50 +112,69 @@ MenuBar{
         }
 
         MenuItem {
-          text: "Start a new game"
+          text: qsTr("Start a new game")
         }
 
         MenuItem {
-          text: "Exit app"
+          text: qsTr("Exit app")
         }
 
     }
 
     Menu{
-        title: "Settings"
+        title: qsTr("Settings")
 
         topPadding: 0
         bottomPadding: 0
 
         Menu {
-          title: "Language"
+            id: languageMenu
+            title: qsTr("Language")
 
-          topPadding: 0
-          bottomPadding: 0
+            topPadding: 0
+            bottomPadding: 0
 
-          MenuItem {
-            text: "English "
-          }
+            Instantiator{
+                id: languagesInstantiator
+                model: languagesModel
+                delegate: CheckableMenuItem {
+                    text: name
 
-          MenuItem {
-            text: "Русский "
-          }
+                    ButtonGroup.group: languageButtonGroup
 
+                    onTriggered: Translator.setLanguage(lang)
+
+                    Component.onCompleted: {
+                        if(Translator.language===lang) checked = true
+                    }
+
+                    Connections{
+                        target: Translator
+
+                        function onLanguageChanged(){
+                            if(Translator.language===lang) checked = true
+                        }
+                    }
+                }
+
+                onObjectAdded: (index, object) => languageMenu.insertItem(index, object)
+                onObjectRemoved: (index, object) => languageMenu.removeItem(object)
+            }
         }
     }
 
     Menu {
-        title: "Help"
+        title: qsTr("Help")
 
         topPadding: 0
         bottomPadding: 0
 
         MenuItem {
-          text: "Game Rules"
+          text: qsTr("Game Rules")
         }
 
         MenuItem {
-          text: "About application"
+          text: qsTr("About application")
         }
 
     }
