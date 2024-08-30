@@ -30,38 +30,37 @@ ApplicationWindow{
 
     menuBar: MinesweeperMenuBar { }
 
+    // Field Cell Template
+    Button{
+        height: 40
+        width: 40
+
+        background: Rectangle {
+            color: "#f0f0f0"
+            anchors.fill: parent
+
+            Shape {
+                width: parent.width
+                height: parent.height
+                anchors.centerIn: parent
+                  ShapePath {
+                      strokeWidth: 1
+                      strokeColor: "grey"
+                      fillColor: "grey"
+                      startX: 0; startY: 40
+                      PathLine { x: 40; y: 0 }
+                      PathLine { x: 40; y: 40 }
+                      PathLine { x: 0; y: 40 }
+                  }
+              }
+
+            Rectangle{
+                anchors.fill: parent
+                anchors.margins: 5
+                color: "lightgrey"
+            }
+        }
+
+    }
+
 }
-
-// Field cell template
-
-// Button{
-//     height: 40
-//     width: 40
-
-//     background: Rectangle {
-//         color: "#f0f0f0"
-//         anchors.fill: parent
-
-//         Shape {
-//             width: parent.width
-//             height: parent.height
-//             anchors.centerIn: parent
-//               ShapePath {
-//                   strokeWidth: 1
-//                   strokeColor: "grey"
-//                   fillColor: "grey"
-//                   startX: 0; startY: 40
-//                   PathLine { x: 40; y: 0 }
-//                   PathLine { x: 40; y: 40 }
-//                   PathLine { x: 0; y: 40 }
-//               }
-//           }
-
-//         Rectangle{
-//             anchors.fill: parent
-//             anchors.margins: 5
-//             color: "lightgrey"
-//         }
-//     }
-
-// }

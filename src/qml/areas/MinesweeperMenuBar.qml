@@ -7,6 +7,19 @@ import "../components"
 
 MenuBar{
 
+    background: Rectangle {
+            implicitWidth: 40
+            implicitHeight: 40
+            color: "white"
+
+            Rectangle {
+                color: "grey"
+                width: parent.width
+                height: 1
+                anchors.bottom: parent.bottom
+            }
+    }
+
     ButtonGroup{
         id: difficultyButtonGroup
     }
