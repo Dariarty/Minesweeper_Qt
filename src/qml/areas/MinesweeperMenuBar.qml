@@ -39,8 +39,7 @@ MenuBar{
             name: qsTr("Beginner")
             fieldWidth: 9
             fieldHeight: 9
-            mines: 10
-            defaultMode: true
+            mines: 10 
         }
 
         ListElement{
@@ -48,6 +47,7 @@ MenuBar{
             fieldWidth: 16
             fieldHeight: 16
             mines: 40
+            defaultMode: true
         }
 
         ListElement{
@@ -77,18 +77,24 @@ MenuBar{
 
         ListElement{
             name: qsTr("Tiny")
-            cellScale: 24
+            cellScale: 20
+        }
+
+        ListElement{
+            name: qsTr("Very Small")
+            cellScale: 25
         }
 
         ListElement{
             name: qsTr("Small")
             cellScale: 30
+
+            defaultScale: true
         }
 
         ListElement{
             name: qsTr("Medium")
             cellScale: 35
-            defaultScale: true
         }
 
         ListElement{
@@ -97,7 +103,7 @@ MenuBar{
         }
 
         ListElement{
-            name: qsTr("Extra Large")
+            name: qsTr("Very Large")
             cellScale: 50
         }
 
@@ -181,6 +187,8 @@ MenuBar{
             id: scaleMenu
             title: qsTr("Cells scale")
 
+            contentWidth: 205
+
             topPadding: 0
             bottomPadding: 0
 
@@ -214,7 +222,11 @@ MenuBar{
 
             Action{
                 text: qsTr("Custom cell scale...")
-                enabled: false
+
+                //!!!PLACEHOLDER!!! ADDING NEW SCALE OPTION
+                onTriggered: {
+                    cellScaleModel.append({name: "Custom", cellScale: 20, checked: true})
+                }
             }
         }
 

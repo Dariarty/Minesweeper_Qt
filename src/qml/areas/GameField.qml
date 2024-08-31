@@ -4,39 +4,71 @@ import QtQuick.Controls.Imagine 2.12
 import QtQuick.Shapes
 
 Rectangle {
-    width: parent.width
+    id: fieldRootItem
 
     color: "lightgrey"
 
-    Button{
-        height: cellPixelSize
-        width: cellPixelSize
+    Connections{
+        target: GameHandler
 
-        background: Rectangle {
-            color: "#f0f0f0"
-            anchors.fill: parent
-
-            Shape {
-                width: parent.width
-                height: parent.height
-                anchors.centerIn: parent
-                layer.samples: 8
-                  ShapePath {
-                      strokeWidth: 0.1
-                      strokeColor: "grey"
-                      fillColor: "grey"
-                      startX: 0; startY: cellPixelSize
-                      PathLine { x: cellPixelSize; y: 0 }
-                      PathLine { x: cellPixelSize; y: cellPixelSize }
-                      PathLine { x: 0; y: cellPixelSize }
-                  }
-              }
-
-            Rectangle{
-                anchors.fill: parent
-                anchors.margins: cellPixelSize / 8
-                color: "lightgrey"
+        function onNewGameStarted(cellsCountWidth, cellsCountHeight){
+            fieldModel.clear()
+            for(var i = 0; i < cellsCountWidth * cellsCountHeight; i++){
+                fieldModel.append({})
             }
         }
     }
+
+    ListModel{
+        id: fieldModel
+    }
+
+    GridView{
+        id: fieldGridView
+        anchors.fill: parent
+
+        interactive: false
+
+        model: fieldModel
+
+        cellHeight: cellPixelSize
+        cellWidth: cellPixelSize
+
+        delegate: MouseArea{
+            height: cellPixelSize
+            width: cellPixelSize
+
+            Rectangle {
+                color: "#f0f0f0"
+                anchors.fill: parent
+
+                Shape {
+                    width: parent.width
+                    height: parent.height
+                    anchors.centerIn: parent
+                    layer.samples: 8
+                      ShapePath {
+                          strokeWidth: 0.1
+                          strokeColor: "grey"
+                          fillColor: "grey"
+                          startX: 0; startY: cellPixelSize
+                          PathLine { x: cellPixelSize; y: 0 }
+                          PathLine { x: cellPixelSize; y: cellPixelSize }
+                          PathLine { x: 0; y: cellPixelSize }
+                      }
+                  }
+
+                Rectangle{
+                    anchors.fill: parent
+                    anchors.margins: cellPixelSize / 8
+                    color: "lightgrey"
+                }
+            }
+
+            onClicked: console.log("clicked cell: " + index)
+        }
+
+    }
+
+
 }

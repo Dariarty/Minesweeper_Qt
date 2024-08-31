@@ -17,7 +17,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="47"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="46"/>
         <source>Intermediate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33,86 +33,91 @@
     </message>
     <message>
         <location filename="../qml/areas/MinesweeperMenuBar.qml" line="84"/>
-        <source>Small</source>
+        <source>Very Small</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/areas/MinesweeperMenuBar.qml" line="89"/>
+        <source>Small</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="96"/>
         <source>Medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="95"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="101"/>
         <source>Large</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="100"/>
-        <source>Extra Large</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="105"/>
-        <source>Gigantic</source>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="106"/>
+        <source>Very Large</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/areas/MinesweeperMenuBar.qml" line="111"/>
+        <source>Gigantic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="117"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="118"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="124"/>
         <source>Change difficulty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="157"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="163"/>
         <source>New custom rules...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="163"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="169"/>
         <source>Start a new game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="168"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="174"/>
         <source>Exit app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="175"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="181"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="182"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="188"/>
         <source>Cells scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="216"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="224"/>
         <source>Custom cell scale...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="223"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="235"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="251"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="263"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="257"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="269"/>
         <source>Game Rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="262"/>
+        <location filename="../qml/areas/MinesweeperMenuBar.qml" line="274"/>
         <source>About application</source>
         <translation type="unfinished"></translation>
     </message>
