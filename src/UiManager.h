@@ -5,6 +5,7 @@
 #include <QQmlContext>
 #include <QSharedPointer>
 
+#include "GameHandler.h"
 #include "Translator.h"
 
 namespace minesweeper {
@@ -24,6 +25,7 @@ private:
     void loadUi();
 
     QSharedPointer<Translator> translator_;
+    QSharedPointer<GameHandler> gameHandler_;
 
     QQmlApplicationEngine *engine_;
 };

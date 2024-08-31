@@ -1,10 +1,14 @@
 #include "UiManager.h"
 
+#include <QScreen>
+
 namespace minesweeper {
 
+//public
 UiManager::UiManager(QObject *parent)
     : QObject(parent)
     , translator_(new Translator())
+    , gameHandler_(new GameHandler())
     , engine_(new QQmlApplicationEngine(this))
 {
     qmlRegister();
@@ -14,10 +18,12 @@ UiManager::UiManager(QObject *parent)
     loadUi();
 }
 
+//private
 void UiManager::qmlRegister()
 {
     engine_->rootContext()->setContextProperty("UiManager", this);
     engine_->rootContext()->setContextProperty("Translator", translator_.data());
+    engine_->rootContext()->setContextProperty("GameHandler", gameHandler_.data());
 }
 
 void UiManager::initTranslator()

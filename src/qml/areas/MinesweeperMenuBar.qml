@@ -28,6 +28,10 @@ MenuBar{
         id: languageButtonGroup
     }
 
+    ButtonGroup{
+        id: cellScaleButtonGroup
+    }
+
     ListModel{
         id: difficultyModesModel
 
@@ -36,6 +40,7 @@ MenuBar{
             fieldWidth: 9
             fieldHeight: 9
             mines: 10
+            defaultMode: true
         }
 
         ListElement{
@@ -67,6 +72,41 @@ MenuBar{
         }
     }
 
+    ListModel{
+        id: cellScaleModel
+
+        ListElement{
+            name: qsTr("Tiny")
+            cellScale: 24
+        }
+
+        ListElement{
+            name: qsTr("Small")
+            cellScale: 30
+        }
+
+        ListElement{
+            name: qsTr("Medium")
+            cellScale: 35
+            defaultScale: true
+        }
+
+        ListElement{
+            name: qsTr("Large")
+            cellScale: 40
+        }
+
+        ListElement{
+            name: qsTr("Extra Large")
+            cellScale: 50
+        }
+
+        ListElement{
+            name: qsTr("Gigantic")
+            cellScale: 70
+        }
+    }
+
     Menu{
         title: qsTr("Game")
 
@@ -84,11 +124,19 @@ MenuBar{
                 id: difficultyModeInstantiator
                 model: difficultyModesModel
                 delegate: CheckableMenuItem {
-                    ButtonGroup.group: difficultyButtonGroup
-                    onTriggered: {
-                        console.log(name)
-                    }
                     text: name
+
+                    ButtonGroup.group: difficultyButtonGroup
+
+                    onTriggered: {
+                        GameHandler.initNewGame(fieldWidth, fieldHeight, mines)
+                    }
+
+                    checked: defaultMode
+
+                    Component.onCompleted: {
+                        if(defaultMode) triggered()
+                    }
                 }
 
                 onObjectAdded: (index, object) => difficultyMenu.insertItem(index, object)
@@ -107,16 +155,18 @@ MenuBar{
 
             Action{
                 text: qsTr("New custom rules...")
-                onTriggered: console.log("Custom")
+                enabled: false
             }
         }
 
         MenuItem {
           text: qsTr("Start a new game")
+          onTriggered: GameHandler.initNewGame()
         }
 
         MenuItem {
           text: qsTr("Exit app")
+          onTriggered: Qt.quit()
         }
 
     }
@@ -126,6 +176,47 @@ MenuBar{
 
         topPadding: 0
         bottomPadding: 0
+
+        Menu{
+            id: scaleMenu
+            title: qsTr("Cells scale")
+
+            topPadding: 0
+            bottomPadding: 0
+
+            Instantiator{
+                id: cellScaleInstantiator
+                model: cellScaleModel
+                delegate: CheckableMenuItem {
+                    text: name + " | " + cellScale + "x" + cellScale
+
+                    ButtonGroup.group: cellScaleButtonGroup
+
+                    onTriggered: root.cellPixelSize = cellScale
+
+                    checked: defaultScale
+
+                }
+
+                onObjectAdded: (index, object) => scaleMenu.insertItem(index, object)
+                onObjectRemoved: (index, object) => scaleMenu.removeItem(object)
+            }
+
+            MenuSeparator{
+                topPadding: 0
+                bottomPadding: 0
+
+                contentItem: Rectangle {
+                    implicitHeight: 1
+                    color: "grey"
+                }
+            }
+
+            Action{
+                text: qsTr("Custom cell scale...")
+                enabled: false
+            }
+        }
 
         Menu {
             id: languageMenu
@@ -148,13 +239,6 @@ MenuBar{
                         if(Translator.language===lang) checked = true
                     }
 
-                    Connections{
-                        target: Translator
-
-                        function onLanguageChanged(){
-                            if(Translator.language===lang) checked = true
-                        }
-                    }
                 }
 
                 onObjectAdded: (index, object) => languageMenu.insertItem(index, object)
@@ -171,10 +255,12 @@ MenuBar{
 
         MenuItem {
           text: qsTr("Game Rules")
+          enabled: false
         }
 
         MenuItem {
           text: qsTr("About application")
+          enabled: false
         }
 
     }

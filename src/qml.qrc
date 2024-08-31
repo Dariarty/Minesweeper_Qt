@@ -3,5 +3,7 @@
         <file>qml/main/Minesweeper.qml</file>
         <file>qml/areas/MinesweeperMenuBar.qml</file>
         <file>qml/components/CheckableMenuItem.qml</file>
+        <file>qml/areas/GameHeader.qml</file>
+        <file>qml/areas/GameField.qml</file>
     </qresource>
 </RCC>

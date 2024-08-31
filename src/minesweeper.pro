@@ -1,10 +1,12 @@
 QT += quick
 
 HEADERS += \
+    GameHandler.h \
     Translator.h \
     UiManager.h
 
 SOURCES += \
+        GameHandler.cpp \
         Translator.cpp \
         UiManager.cpp \
         main.cpp
