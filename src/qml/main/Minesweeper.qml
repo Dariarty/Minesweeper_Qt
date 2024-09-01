@@ -1,10 +1,11 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Imagine 2.12
 import QtQuick.Shapes
 
 import "../areas"
+import "../dialogs"
 
 ApplicationWindow{
     id: root
@@ -164,4 +165,12 @@ ApplicationWindow{
             anchors.margins: cellPixelSize * 0.125
         }
     }
+
+    signal scaleOptionAdded(int newCellSize)
+
+    //Dialog to choose cell scale
+    ScaleDialog{
+        id: scaleDialog
+    }
+
 }

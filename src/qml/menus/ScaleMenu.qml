@@ -1,13 +1,17 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.12
 
 import "../components"
+import "../dialogs"
 
 Menu{
     id: scaleMenu
     title: qsTr("Cells scale")
+
+    //Default number of scale options
+    property int defaultNumberOfOptions
 
     contentWidth: 205
     topPadding: 0
@@ -17,14 +21,30 @@ Menu{
     ListModel{
         id: cellScaleModel
 
-        ListElement{ name: qsTr("Tiny"); cellScale: 15 }
-        ListElement{ name: qsTr("Very Small"); cellScale: 20 }
-        ListElement{ name: qsTr("Small"); cellScale: 25}
-        ListElement{ name: qsTr("Medium"); cellScale: 30; defaultScale: true }
-        ListElement{ name: qsTr("Large"); cellScale: 35 }
-        ListElement{ name: qsTr("Very Large"); cellScale: 40 }
-        ListElement{ name: qsTr("Huge"); cellScale: 50 }
-        ListElement{ name: qsTr("Gigantic"); cellScale: 70 }
+        ListElement{ name: qsTr("Tiny"); cellScale: 15; chosen: false }
+        ListElement{ name: qsTr("Very Small"); cellScale: 20; chosen: false}
+        ListElement{ name: qsTr("Small"); cellScale: 25; chosen: false}
+        ListElement{ name: qsTr("Medium"); cellScale: 30; chosen: true }
+        ListElement{ name: qsTr("Large"); cellScale: 35; chosen: false }
+        ListElement{ name: qsTr("Very Large"); cellScale: 40; chosen: false }
+        ListElement{ name: qsTr("Huge"); cellScale: 50; chosen: false }
+        ListElement{ name: qsTr("Gigantic"); cellScale: 70; chosen: false }
+    }
+
+    Component.onCompleted: defaultNumberOfOptions = cellScaleModel.count
+
+    //Add new custom scale option
+    Connections{
+        target: root
+
+        function onScaleOptionAdded(newCellSize){
+            //If Custom Scale option already exists, delete it
+            if(cellScaleModel.count > defaultNumberOfOptions)
+                cellScaleModel.remove(cellScaleModel.count - 1, 1)
+
+            //Add new custom scale option
+            cellScaleModel.append({name: qsTr("Custom"), cellScale: newCellSize, chosen: true})
+        }
     }
 
     //Cells scale button group
@@ -43,13 +63,15 @@ Menu{
 
             onTriggered: {
                 console.log("Set CellPixelSize From Menu: " + cellScale + "\n")
+
+                chosen = true
                 root.cellPixelSize = cellScale
             }
 
-            checked: defaultScale
+            checked: chosen
 
             Component.onCompleted: {
-                if(defaultScale) triggered()
+                if(chosen) triggered()
             }
 
         }
@@ -71,8 +93,12 @@ Menu{
 
     //Add new custom cell scale
     Action{
+        id: customCellScaleAction
+
         text: qsTr("Custom cell scale...")
 
-        enabled: false
+        onTriggered: scaleDialog.open()
+
     }
+
 }
