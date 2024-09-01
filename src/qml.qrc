@@ -10,5 +10,8 @@
         <file>qml/menus/ScaleMenu.qml</file>
         <file>qml/dialogs/ScaleDialog.qml</file>
         <file>qml/dialogs/GameModeDialog.qml</file>
+        <file>qml/dialogs/AboutAppDialog.qml</file>
+        <file>qml/dialogs/GameRulesDialog.qml</file>
+        <file>qml/components/GameRulesHelp.qml</file>
     </qresource>
 </RCC>

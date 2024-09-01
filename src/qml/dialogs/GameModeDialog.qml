@@ -73,6 +73,7 @@ Dialog {
                     }
                 }
 
+                //SpinBox to choose field width
                 SpinBox{
                     id: widthSpinBox
 
@@ -127,6 +128,7 @@ Dialog {
                     }
                 }
 
+                //SpinBox to choose field height
                 SpinBox{
                     id: heightSpinBox
 
@@ -181,6 +183,7 @@ Dialog {
                     }
                 }
 
+                //SpinBox to choose number of mines in a field
                 SpinBox{
                     id: minesSpinBox
                     anchors.bottom: parent.bottom
@@ -190,6 +193,8 @@ Dialog {
                     Material.accent: Material.Grey
                     editable: true
                     value: 16
+
+                    //Constraints: from 1 to number of cells in a field - 1
                     from: 1
                     to: widthSpinBox.value * heightSpinBox.value - 1
                 }

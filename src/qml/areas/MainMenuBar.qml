@@ -72,12 +72,12 @@ MenuBar{
 
         MenuItem{
           text: qsTr("Game Rules")
-          enabled: false
+          onClicked: gameRulesDialog.open()
         }
 
         MenuItem{
           text: qsTr("About application")
-          enabled: false
+          onClicked: aboutAppDialog.open()
         }
 
     }

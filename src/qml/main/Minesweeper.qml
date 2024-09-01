@@ -180,4 +180,13 @@ ApplicationWindow{
         id: gameModeDialog
     }
 
+    //About app Dialog
+    AboutAppDialog{
+        id: aboutAppDialog
+    }
+
+    //Game Rules Dialog
+    GameRulesDialog{
+        id: gameRulesDialog
+    }
 }
