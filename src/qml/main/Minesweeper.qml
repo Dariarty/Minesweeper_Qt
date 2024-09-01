@@ -12,7 +12,7 @@ ApplicationWindow{
     title: qsTr("Minesweeper")
 
     //Size of single field cell in pixels
-    property real cellPixelSize: 30
+    property real cellPixelSize
 
     //Count of cells in width and height
     property int fieldCellsCountWidth

@@ -200,9 +200,16 @@ MenuBar{
 
                     ButtonGroup.group: cellScaleButtonGroup
 
-                    onTriggered: root.cellPixelSize = cellScale
+                    onTriggered: {
+                        console.log("Set CellPixelSize From Menu: " + cellScale + "\n")
+                        root.cellPixelSize = cellScale
+                    }
 
                     checked: defaultScale
+
+                    Component.onCompleted: {
+                        if(defaultScale) triggered()
+                    }
 
                 }
 
