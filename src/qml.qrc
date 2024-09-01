@@ -1,9 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main/Minesweeper.qml</file>
-        <file>qml/areas/MinesweeperMenuBar.qml</file>
+        <file>qml/areas/MainMenuBar.qml</file>
         <file>qml/components/CheckableMenuItem.qml</file>
         <file>qml/areas/GameHeader.qml</file>
         <file>qml/areas/GameField.qml</file>
+        <file>qml/menus/DifficultyMenu.qml</file>
+        <file>qml/menus/LanguageMenu.qml</file>
+        <file>qml/menus/ScaleMenu.qml</file>
     </qresource>
 </RCC>

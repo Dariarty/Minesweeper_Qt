@@ -69,7 +69,7 @@ ApplicationWindow{
         color: "#bec3cf"
     }
 
-    menuBar: MinesweeperMenuBar {
+    menuBar: MainMenuBar {
         id: topMenu
     }
 
