@@ -12,6 +12,9 @@ Menu{
     topPadding: 0
     bottomPadding: 0
 
+    //Default number of scale options
+    property int defaultNumberOfOptions
+
     //Model with difficulty modes
     ListModel{
         id: difficultyModesModel
@@ -21,6 +24,7 @@ Menu{
             fieldWidth: 9
             fieldHeight: 9
             mines: 10
+            chosen: false
         }
 
         ListElement{
@@ -28,7 +32,7 @@ Menu{
             fieldWidth: 16
             fieldHeight: 16
             mines: 40
-            defaultMode: true
+            chosen: true
         }
 
         ListElement{
@@ -36,6 +40,31 @@ Menu{
             fieldWidth: 30
             fieldHeight: 16
             mines: 99
+            chosen: false
+        }
+    }
+
+    Component.onCompleted: defaultNumberOfOptions = difficultyModesModel.count
+
+    //Add new custom gameMode option
+    Connections{
+        target: root
+
+        function onDifficultyOptionAdded(cellsCountWidth, cellsCountHeight, minesCount){
+            //If more than 3 custom gamemodes, delete last added
+            if(difficultyModesModel.count > defaultNumberOfOptions + 2)
+                difficultyModesModel.remove(defaultNumberOfOptions, 1)
+
+            //Add new custom gamemode
+            difficultyModesModel.append({
+                name:
+                    cellsCountWidth.toString() + "x" + cellsCountHeight.toString() + " | " +
+                    qsTr("Mines: ") + minesCount.toString(),
+                fieldWidth: cellsCountWidth,
+                fieldHeight: cellsCountHeight,
+                mines: minesCount,
+                chosen: true
+            })
         }
     }
 
@@ -55,12 +84,14 @@ Menu{
 
             onTriggered: {
                 GameHandler.initNewGame(fieldWidth, fieldHeight, mines)
+
+                chosen = true
             }
 
-            checked: defaultMode
+            checked: chosen
 
             Component.onCompleted: {
-                if(defaultMode) triggered()
+                if(chosen) triggered()
             }
         }
 
@@ -82,6 +113,7 @@ Menu{
     //Add new custom gamemode
     Action{
         text: qsTr("New custom rules...")
-        enabled: false
+
+        onTriggered: gameModeDialog.open()
     }
 }

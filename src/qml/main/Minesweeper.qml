@@ -173,4 +173,11 @@ ApplicationWindow{
         id: scaleDialog
     }
 
+    signal difficultyOptionAdded(int cellsCountWidth, int cellsCountHeight, int minesCount)
+
+    //Dialog to choose difficulty
+    GameModeDialog{
+        id: gameModeDialog
+    }
+
 }

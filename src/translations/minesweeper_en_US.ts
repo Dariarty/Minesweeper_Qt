@@ -9,23 +9,51 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="20"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="23"/>
         <source>Beginner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="27"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="31"/>
         <source>Intermediate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="35"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="39"/>
         <source>Expert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="84"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="62"/>
+        <source>Mines: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="115"/>
         <source>New custom rules...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GameModeDialog</name>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="7"/>
+        <source>New custom rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="66"/>
+        <source>Field width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="120"/>
+        <source>Field height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="174"/>
+        <source>Number of mines</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

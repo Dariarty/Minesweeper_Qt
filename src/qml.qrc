@@ -9,5 +9,6 @@
         <file>qml/menus/LanguageMenu.qml</file>
         <file>qml/menus/ScaleMenu.qml</file>
         <file>qml/dialogs/ScaleDialog.qml</file>
+        <file>qml/dialogs/GameModeDialog.qml</file>
     </qresource>
 </RCC>

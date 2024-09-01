@@ -10,6 +10,9 @@ Dialog {
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
 
+        implicitWidth: 210
+        implicitHeight: 200
+
         Material.accent: "black"
 
         standardButtons: Dialog.Save | Dialog.Cancel
@@ -22,12 +25,13 @@ Dialog {
         }
 
         //spinbox to choose cell size
-        SpinBox{
+        contentItem: SpinBox{
             id: scaleSpinBox
             Material.accent: Material.Grey
             focus: scaleDialog.visible
             editable: true
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
 
             //min and max values
             from: 10

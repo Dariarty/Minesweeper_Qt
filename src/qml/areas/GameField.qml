@@ -46,7 +46,6 @@ Rectangle {
                     width: parent.width
                     height: parent.height
                     anchors.centerIn: parent
-                    layer.samples: 8
                       ShapePath {
                           strokeWidth: 0.1
                           strokeColor: "grey"

@@ -9,24 +9,52 @@
         <translation>Выбрать сложность</translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="20"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="23"/>
         <source>Beginner</source>
         <translation>Новичок</translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="27"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="31"/>
         <source>Intermediate</source>
         <translation>Любитель</translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="35"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="39"/>
         <source>Expert</source>
         <translation>Эксперт</translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="84"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="62"/>
+        <source>Mines: </source>
+        <translation>Мины: </translation>
+    </message>
+    <message>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="115"/>
         <source>New custom rules...</source>
-        <translation>Пользовательские правила...</translation>
+        <translation>Свои правила...</translation>
+    </message>
+</context>
+<context>
+    <name>GameModeDialog</name>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="7"/>
+        <source>New custom rules</source>
+        <translation>Новые правила</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="66"/>
+        <source>Field width</source>
+        <translation>Ширина поля</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="120"/>
+        <source>Field height</source>
+        <translation>Высота поля</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/GameModeDialog.qml" line="174"/>
+        <source>Number of mines</source>
+        <translation>Количество мин</translation>
     </message>
 </context>
 <context>
