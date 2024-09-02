@@ -1,6 +1,16 @@
 <RCC>
     <qresource prefix="/">
+        <file>resources/icons/flag16px.png</file>
+        <file>resources/icons/flag32px.png</file>
+        <file>resources/icons/flag64px.png</file>
+        <file>resources/icons/flag128px.png</file>
+        <file>resources/icons/flag256px.png</file>
+        <file>resources/icons/mine16px.png</file>
+        <file>resources/icons/mine32px.png</file>
+        <file>resources/icons/mine64px.png</file>
         <file>resources/icons/mine128px.png</file>
+        <file>resources/icons/mine256px.png</file>
         <file>resources/icons/greyMine256px.png</file>
+        <file>resources/fonts/Bungee-Regular.ttf</file>
     </qresource>
 </RCC>

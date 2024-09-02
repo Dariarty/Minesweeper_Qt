@@ -86,7 +86,7 @@ Dialog {
 
                     //Field Constraints are from 5x5 to 50x50
                     from: 5
-                    to: 50
+                    to: 100
 
                     //default value
                     value: 16
@@ -141,7 +141,7 @@ Dialog {
 
                     //field contraints are from 5x5 to 50x50
                     from: 5
-                    to: 50
+                    to: 100
 
                     //default value
                     value: 16

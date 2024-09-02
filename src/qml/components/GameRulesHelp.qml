@@ -35,7 +35,7 @@ ScrollView{
               qsTr("Beginner: 9x9 field, 10 mines") + "\n" +
               qsTr("Intermediate: 16x16 field, 40 mines") + "\n" +
               qsTr("Expert: 30x16 field, 99 mines") + "\n" +
-              qsTr("Custom: fields from 5x5 to 50x50 are supported, " +
+              qsTr("Custom: fields from 5x5 to 100x100 are supported, " +
                    "with number of mines from 1 to number of cells in a field minus one")
 
         wrapMode: Text.WordWrap

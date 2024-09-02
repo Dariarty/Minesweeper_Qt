@@ -13,5 +13,8 @@
         <file>qml/dialogs/AboutAppDialog.qml</file>
         <file>qml/dialogs/GameRulesDialog.qml</file>
         <file>qml/components/GameRulesHelp.qml</file>
+        <file>qml/components/MineImage.qml</file>
+        <file>qml/components/FlagImage.qml</file>
+        <file>qml/components/Cell.qml</file>
     </qresource>
 </RCC>

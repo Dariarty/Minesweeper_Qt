@@ -91,94 +91,94 @@
 <context>
     <name>GameRulesHelp</name>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="13"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="15"/>
         <source>Minesweeper is a classic puzzle game where the objective isto clear a grid without detonating any hidden mines</source>
         <translation>Сапер- это классическая игра-головоломка, цель которой состоит в том, чтобы расчистить поле,открыв его, не взорвав при этом спрятанные мины</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="15"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="17"/>
         <source>The game board consists of a grid of squares, some of which contain mines</source>
         <translation>Игровое поле состоит из сетки ячеек, некоторые из которых содержат мины</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="17"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="19"/>
         <source>Numbers indicate how many mines are adjacent to that cell</source>
         <translation>Цифры указывают, сколько мин находится в ячейках, которые прилегают к ячейке с цифрой</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="18"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="20"/>
         <source>Gameplay:</source>
         <translation>Игровой процесс:</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="19"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="21"/>
         <source>Use LEFT MOUSE CLICK on any cell to reveal it</source>
         <translation>Щелкните ЛЕВОЙ КНОПКОЙ МЫШИ на любой ячейке, чтобы открыть ее</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="20"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="22"/>
         <source>Use RIGHT CLICK to mark a cell you suspect contains a mine</source>
         <translation>Щелкните ПРАВОЙ КНОПКОЙ МЫШИ, чтобы отметить флагом ячейку, в которой, как вы подозреваете, находится мина</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="21"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="23"/>
         <source>When you open a square that contains a mine, you lose</source>
         <translation>Когда вы открываете ячейку, в которой находится мина, вы проигрываете</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="22"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="24"/>
         <source>When you open a square that does not touch any mines, it will be empty and the adjacent squares will automatically open in all directions until reaching squares that contain numbers.</source>
         <translation>Когда вы открываете клетку, которая не касается ни одной мины, она становится пустой, а соседние клетки автоматически открываются во всех направлениях, пока не дойдут до клеток, содержащих цифры.</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="25"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="27"/>
         <source>Use numbers to deduce mines location. A number indicates how many mines are adjacent to that square.</source>
         <translation>Используйте цифры, чтобы определить местоположение мин. Число от 1 до 8 указывает, сколько мин находится рядом с этой ячейкой.</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="27"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="29"/>
         <source>Winning:</source>
         <translation>Условие победы:</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="28"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="30"/>
         <source>The game is won by revealing all non-mine squares, leaving only the mines covered or flagged correctly</source>
         <translation>Вы выигрываете, если раскрываете все ячейки, в которых нет мин, в результате чего пустых ячеек не остается. Все оставшиеся ячейки при этом содержат мины, они закрыты или помечены флагом</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="30"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="32"/>
         <source>Losing:</source>
         <translation>Условие поражения:</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="31"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="33"/>
         <source>The game ends immediately if you click on a square with a mine</source>
         <translation>Игра заканчивается немедленно, если вы нажмете на ячейку с миной</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="32"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="34"/>
         <source>Game modes:</source>
         <translation>Режимы игры:</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="33"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="35"/>
         <source>Beginner: 9x9 field, 10 mines</source>
         <translation>Новичок: поле 9x9, 10 мин</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="34"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="36"/>
         <source>Intermediate: 16x16 field, 40 mines</source>
         <translation>Любитель: поле 16x16, 40 мин</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="35"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="37"/>
         <source>Expert: 30x16 field, 99 mines</source>
         <translation>Эксперт: поле 30x16, 99 мин</translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="36"/>
-        <source>Custom: fields from 5x5 to 50x50 are supported, with number of mines from 1 to number of cells in a field minus one</source>
-        <translation>Пользовательские настройки: поддерживается размер поля от 5x5 до 50x50, с количеством мин от одной до количества ячеек в поле минус единица</translation>
+        <location filename="../qml/components/GameRulesHelp.qml" line="38"/>
+        <source>Custom: fields from 5x5 to 100x100 are supported, with number of mines from 1 to number of cells in a field minus one</source>
+        <translation>Пользовательские настройки: поддерживается размер поля от 5x5 до 100x100, с количеством мин от одной до количества ячеек в поле минус единица</translation>
     </message>
 </context>
 <context>
