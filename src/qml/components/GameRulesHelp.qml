@@ -10,6 +10,8 @@ ScrollView{
     }
 
     TextArea{
+        enabled: false
+        color: "black"
         text: qsTr("Minesweeper is a classic puzzle game where the objective is" +
                    "to clear a grid without detonating any hidden mines") + "\n\n" +
               qsTr("The game board consists of a grid of squares, " +
