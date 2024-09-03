@@ -15,6 +15,18 @@ ApplicationWindow{
     //Size of single field cell in pixels
     property real cellPixelSize
 
+    //Show at screen center on start
+    onVisibilityChanged: {
+        root.showNormal()
+        root.x =
+                screen.width / 2 -
+                (fieldCellsCountWidth + 0.75) * cellPixelSize / 2
+        root.y =
+                screen.height / 2 -
+                ((fieldCellsCountHeight + 3.25) * cellPixelSize
+                 + topMenu.contentItem.height) / 2
+    }
+
     //Count of cells in width and height
     property int fieldCellsCountWidth
     property int fieldCellsCountHeight
