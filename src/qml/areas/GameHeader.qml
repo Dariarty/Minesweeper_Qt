@@ -8,11 +8,6 @@ Rectangle {
     anchors.margins: cellPixelSize * 0.125
     anchors.centerIn: parent
 
-    onWidthChanged: {
-        console.log(width)
-        console.log(header.width)
-    }
-
     FontLoader{
         id: seg7Font
         source: "qrc:/resources/fonts/seg7.ttf"

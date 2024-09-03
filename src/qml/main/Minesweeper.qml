@@ -38,20 +38,28 @@ ApplicationWindow{
 
     //height of game content with MenuBar
     property int referenceGameHeight: {
-        (fieldCellsCountHeight + 3.25) * cellPixelSize + topMenu.contentItem.height
+        (fieldCellsCountHeight + 3.5) * cellPixelSize + topMenu.contentItem.height
     }
     //width of game content
     property int referenceGameWidth: {
-        (fieldCellsCountWidth + 0.75) * cellPixelSize
+        (fieldCellsCountWidth + 1) * cellPixelSize
     }
 
-    //Height of window in windowed mode adjusted for not fitting into available screen space
+    //Height of window in windowed mode
+    //Adjusted for not fitting into available screen space
+    //Adjusted for too little window
     property int windowedHeight: {
-        Math.min(referenceGameHeight, screen.desktopAvailableHeight - UiManager.titleBarSize)
+        Math.max(Math.min(referenceGameHeight,
+                          screen.desktopAvailableHeight - UiManager.titleBarSize),
+                 400)
     }
-    //Width of window in windowed mode adjusted for not fitting into available screen space
+    //Width of window in windowed mode
+    //Adjusted for not fitting into available screen space
+    //Adjusted for too little window
     property int windowedWidth: {
-        Math.min(referenceGameWidth, screen.desktopAvailableWidth)
+        Math.max(Math.min(referenceGameWidth,
+                          screen.desktopAvailableWidth),
+                 400)
     }
 
     //If windowed height changed, update window height value if in windowed mode
@@ -107,7 +115,7 @@ ApplicationWindow{
 
     background: Rectangle{
         anchors.fill: parent
-        color: "lightgrey"
+        color: "#d0d5db"
     }
 
     menuBar: MainMenuBar {
@@ -121,6 +129,7 @@ ApplicationWindow{
         anchors.top: topMenu.bottom
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.topMargin: cellPixelSize * 0.125
 
         interactive: flick.contentHeight > flick.height || flick.contentWidth > flick.width
         flickableDirection: {
@@ -138,9 +147,48 @@ ApplicationWindow{
             width: Math.max(referenceGameWidth, flick.width)
             height: Math.max(referenceGameHeight - topMenu.contentItem.height, flick.height)
             color: "transparent"
-            // border.color: "black"
-            // border.width: 5
-            // radius: 4
+
+            //Game Padding Rectangle
+            Rectangle{
+                id: paddingRectangle
+
+                anchors.top: headerRect.top
+                anchors.left: headerRect.left
+                anchors.right: headerRect.right
+                anchors.bottom: fieldRect.bottom
+                anchors.margins: -border.width - cellPixelSize / 4
+                color: "grey"
+                border.color: "grey"
+                border.width: cellPixelSize / 8
+
+                //White Shadow
+                Shape{
+                    width: parent.width
+                    height: parent.height
+                    anchors.centerIn: parent
+                    layer.enabled: true
+                    layer.samples: 8
+
+                    ShapePath {
+                        strokeWidth: 0.1
+                        strokeColor: "#f0f0f0"
+                        fillColor: "#f0f0f0"
+                        startX: 0; startY: paddingRectangle.height
+                        PathLine { x: cellPixelSize / 8; y: paddingRectangle.height - cellPixelSize / 8 }
+                        PathLine { x: paddingRectangle.width - cellPixelSize / 8 ; y: cellPixelSize / 8 }
+                        PathLine { x: paddingRectangle.width ; y: 0 }
+                        PathLine { x: 0 ; y: 0 }
+                    }
+                }
+
+                //Background Rectangle
+                Rectangle{
+                    id: fieldRectangleBackground
+                    anchors.fill: paddingRectangle
+                    anchors.margins: cellPixelSize / 8
+                    color: "lightgrey"
+                }
+            }
 
             //Game Header
             Rectangle {
@@ -230,21 +278,6 @@ ApplicationWindow{
                     anchors.margins: cellPixelSize * 0.125
                 }
             }
-
-            //Border Padding
-            // Rectangle{
-            //     id: paddingRectangle
-
-            //     anchors.top: headerRect.top
-            //     anchors.left: headerRect.left
-            //     anchors.right: headerRect.right
-            //     anchors.bottom: fieldRect.bottom
-            //     anchors.margins: -border.width - cellPixelSize / 4
-            //     color: "transparent"
-            //     border.color: "black"
-            //     border.width: cellPixelSize / 8
-            //     radius: 4
-            // }
 
         }
     }
