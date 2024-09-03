@@ -12,5 +12,6 @@
         <file>resources/icons/mine256px.png</file>
         <file>resources/icons/greyMine256px.png</file>
         <file>resources/fonts/Bungee-Regular.ttf</file>
+        <file>resources/fonts/seg7.ttf</file>
     </qresource>
 </RCC>

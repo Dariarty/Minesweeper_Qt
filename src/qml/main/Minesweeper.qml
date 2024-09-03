@@ -67,7 +67,7 @@ ApplicationWindow{
 
     background: Rectangle{
         anchors.fill: parent
-        color: "#bec3cf"
+        color: "lightgrey"
     }
 
     menuBar: MainMenuBar {
@@ -113,10 +113,6 @@ ApplicationWindow{
 
         GameHeader{
             id: gameHeader
-            height: parent.height - cellPixelSize * 0.25
-            width: parent.width - cellPixelSize * 0.25
-            anchors.margins: cellPixelSize * 0.125
-            anchors.centerIn: parent
         }
     }
 
