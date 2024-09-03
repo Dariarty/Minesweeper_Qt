@@ -15,65 +15,93 @@ ApplicationWindow{
     //Size of single field cell in pixels
     property real cellPixelSize
 
-    //Show at screen center on start
-    onVisibilityChanged: {
-        root.showNormal()
-        root.x =
-                screen.width / 2 -
-                (fieldCellsCountWidth + 0.75) * cellPixelSize / 2
-        root.y =
-                screen.height / 2 -
-                ((fieldCellsCountHeight + 3.25) * cellPixelSize
-                 + topMenu.contentItem.height) / 2
-    }
-
     //Count of cells in width and height
     property int fieldCellsCountWidth
     property int fieldCellsCountHeight
 
-    //Disable height resize
-    minimumHeight: (fieldCellsCountHeight + 3.25) * cellPixelSize
-                   + topMenu.contentItem.height
-    maximumHeight: (fieldCellsCountHeight + 3.25) * cellPixelSize
-                   + topMenu.contentItem.height
-    height: (fieldCellsCountHeight + 3.25) * cellPixelSize
-            + topMenu.contentItem.height
+    //When cell pixel size changes, center window if out of bounds
+    onCellPixelSizeChanged: {
+        centerWindowIfOutOfBounds()
+    }
 
-    //Disable width resize
-    minimumWidth: (fieldCellsCountWidth + 0.75) * cellPixelSize
-    maximumWidth: (fieldCellsCountWidth + 0.75) * cellPixelSize
-    width: (fieldCellsCountWidth + 0.75) * cellPixelSize
+    //When entering windowed mode, resize window into reference size and check if window will be out of bounds
+    onVisibilityChanged: (visibility) => {
+
+        if(visibility === Window.Windowed){
+            minimumHeight = windowedHeight
+            height = windowedHeight
+            minimumWidth = windowedWidth
+            width = windowedWidth
+            centerWindowIfOutOfBounds()
+        }
+    }
+
+    //height of game content with MenuBar
+    property int referenceGameHeight: {
+        (fieldCellsCountHeight + 3.25) * cellPixelSize + topMenu.contentItem.height
+    }
+    //width of game content
+    property int referenceGameWidth: {
+        (fieldCellsCountWidth + 0.75) * cellPixelSize
+    }
+
+    //Height of window in windowed mode adjusted for not fitting into available screen space
+    property int windowedHeight: {
+        Math.min(referenceGameHeight, screen.desktopAvailableHeight - UiManager.titleBarSize)
+    }
+    //Width of window in windowed mode adjusted for not fitting into available screen space
+    property int windowedWidth: {
+        Math.min(referenceGameWidth, screen.desktopAvailableWidth)
+    }
+
+    //If windowed height changed, update window height value if in windowed mode
+    onWindowedHeightChanged: {
+        if(visibility === Window.Windowed){
+            minimumHeight = windowedHeight
+            height = windowedHeight
+        }
+    }
+
+    //If windowed width changed, ipdate window width value if in windowed mode
+    onWindowedWidthChanged: {
+        if(visibility === Window.Windowed){
+            minimumWidth = windowedWidth
+            width = windowedWidth
+        }
+    }
 
     Connections{
         target: GameHandler
 
         function onNewGameStarted(cellsCountWidth, cellsCountHeight){
-            //If size of game field changed, remember new values and
+            //If size of game field changed, remember new values
             if(cellsCountWidth !== fieldCellsCountWidth
                     || cellsCountHeight !==fieldCellsCountHeight){
                 fieldCellsCountWidth = cellsCountWidth
                 fieldCellsCountHeight = cellsCountHeight
-
-                //Check if window out of bounds
-                centerWindowIfOutOfBounds()
             }
+
+            //Center window when new game starts, if out of bounds
+            centerWindowIfOutOfBounds()
         }
     }
 
     //If window is out of screen after field resize, center window
     function centerWindowIfOutOfBounds(){
-        if((root.x + root.width > screen.width
-                || root.y + root.height > screen.height
+        if(root.visibility == Window.Windowed && (root.x + root.width > screen.desktopAvailableWidth
+                || root.y - UiManager.titleBarSize +
+            Math.min((fieldCellsCountHeight + 3.25) * cellPixelSize +
+                     topMenu.contentItem.height, screen.desktopAvailableHeight
+                     - UiManager.titleBarSize) > screen.desktopAvailableHeight - UiManager.titleBarSize
                 || root.x < 0
-                || root.y < 0)
-                && root.width <= screen.width && root.height <= screen.height){
+                || root.y < 0)){
             root.x =
-                    screen.width / 2 -
-                    (fieldCellsCountWidth + 0.75) * cellPixelSize / 2
+                    screen.width / 2 - root.width / 2
             root.y =
-                    screen.height / 2 -
-                    ((fieldCellsCountHeight + 3.25) * cellPixelSize
-                     + topMenu.contentItem.height) / 2
+                    (screen.desktopAvailableHeight + UiManager.titleBarSize ) / 2 -
+                    Math.min((fieldCellsCountHeight + 3.25) * cellPixelSize +
+                    topMenu.contentItem.height, screen.desktopAvailableHeight
+                    - UiManager.titleBarSize) / 2
         }
     }
 
@@ -86,91 +114,138 @@ ApplicationWindow{
         id: topMenu
     }
 
-    //Game Header
-    Rectangle  {
-        id: headerRect
+    Flickable{
+        id: flick
 
-        anchors{
-            top: topMenu.bottom
-            topMargin: cellPixelSize * 0.25
-            rightMargin: cellPixelSize * 0.25
-            leftMargin: cellPixelSize * 0.25
-            horizontalCenter: parent.horizontalCenter
+        height: parent.height
+        anchors.top: topMenu.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        interactive: flick.contentHeight > flick.height || flick.contentWidth > flick.width
+        flickableDirection: {
+            if(flick.contentHeight > flick.height && flick.contentWidth > flick.width)
+                Flickable.HorizontalAndVerticalFlick
+            else if (flick.contentHeight > flick.height) Flickable.VerticalFlick
+                else Flickable.HorizontalFlick
         }
+        boundsBehavior: Flickable.DragAndOvershootBounds
+        contentHeight: flickContentWrapper.height
+        contentWidth: flickContentWrapper.width
 
-        height: cellPixelSize * 2.25
-        width: parent.width - cellPixelSize * 0.5
+        Rectangle{
+            id: flickContentWrapper
+            width: Math.max(referenceGameWidth, flick.width)
+            height: Math.max(referenceGameHeight - topMenu.contentItem.height, flick.height)
+            color: "transparent"
+            // border.color: "black"
+            // border.width: 5
+            // radius: 4
 
-        color: "grey"
+            //Game Header
+            Rectangle {
+                id: headerRect
 
-        Shape{
-            width: parent.width
-            height: parent.height
-            anchors.centerIn: parent
-            layer.enabled: true
-            layer.samples: 8
+                anchors{
+                    top: parent.top
+                    topMargin: cellPixelSize * 0.25
+                               + (flickContentWrapper.height - (referenceGameHeight - topMenu.contentItem.height)) / 2
+                    rightMargin: cellPixelSize * 0.25
+                    leftMargin: cellPixelSize * 0.25
+                    horizontalCenter: parent.horizontalCenter
+                }
 
-            ShapePath {
-                strokeWidth: 0.1
-                strokeColor: "#f0f0f0"
-                fillColor: "#f0f0f0"
-                startX: 0; startY: headerRect.height
-                PathLine { x: cellPixelSize * 0.125 ; y: headerRect.height - cellPixelSize * 0.125 }
-                PathLine { x: headerRect.width - cellPixelSize * 0.125; y: cellPixelSize * 0.125 }
-                PathLine { x: headerRect.width; y: 0 }
-                PathLine { x: headerRect.width; y: headerRect.height }
-                PathLine { x: 0; y: headerRect.height }
+                height: cellPixelSize * 2.25
+                width: (fieldCellsCountWidth + 0.25) * cellPixelSize
+
+                color: "grey"
+
+                Shape{
+                    width: parent.width
+                    height: parent.height
+                    anchors.centerIn: parent
+                    layer.enabled: true
+                    layer.samples: 8
+
+                    ShapePath {
+                        strokeWidth: 0.1
+                        strokeColor: "#f0f0f0"
+                        fillColor: "#f0f0f0"
+                        startX: 0; startY: headerRect.height
+                        PathLine { x: cellPixelSize * 0.125 ; y: headerRect.height - cellPixelSize * 0.125 }
+                        PathLine { x: headerRect.width - cellPixelSize * 0.125; y: cellPixelSize * 0.125 }
+                        PathLine { x: headerRect.width; y: 0 }
+                        PathLine { x: headerRect.width; y: headerRect.height }
+                        PathLine { x: 0; y: headerRect.height }
+                    }
+                }
+
+                GameHeader{
+                    id: gameHeader
+                }
             }
-        }
 
-        GameHeader{
-            id: gameHeader
-        }
-    }
+            //Game Field
+            Rectangle{
+                id: fieldRect
 
-    //Game Field
-    Rectangle{
-        id: fieldRect
+                width: (fieldCellsCountWidth + 0.25) * cellPixelSize
+                height: (fieldCellsCountHeight + 0.25) * cellPixelSize
 
-        width: (fieldCellsCountWidth + 0.25) * cellPixelSize
-        height: (fieldCellsCountHeight + 0.25) * cellPixelSize
+                anchors{
+                    top: headerRect.bottom
+                    left: root.left
+                    right: root.right
+                    margins: cellPixelSize * 0.25
+                    horizontalCenter: parent.horizontalCenter
+                }
 
-        anchors{
-            bottom: parent.bottom
-            left: root.left
-            right: root.right
-            margins: cellPixelSize * 0.25
-            horizontalCenter: parent.horizontalCenter
-        }
+                color: "grey"
 
-        color: "grey"
+                Shape{
+                    width: parent.width
+                    height: parent.height
+                    anchors.centerIn: parent
+                    layer.enabled: true
+                    layer.samples: 8
 
-        Shape{
-            width: parent.width
-            height: parent.height
-            anchors.centerIn: parent
-            layer.enabled: true
-            layer.samples: 8
+                    ShapePath {
+                        strokeWidth: 0.1
+                        strokeColor: "#f0f0f0"
+                        fillColor: "#f0f0f0"
+                        startX: 0; startY: fieldRect.height
+                        PathLine { x: cellPixelSize * 0.125 ; y: fieldRect.height - cellPixelSize * 0.125 }
+                        PathLine { x: fieldRect.width - cellPixelSize * 0.125; y: cellPixelSize * 0.125 }
+                        PathLine { x: fieldRect.width; y: 0 }
+                        PathLine { x: fieldRect.width; y: fieldRect.height }
+                        PathLine { x: 0; y: fieldRect.height }
+                    }
+                }
 
-            ShapePath {
-                strokeWidth: 0.1
-                strokeColor: "#f0f0f0"
-                fillColor: "#f0f0f0"
-                startX: 0; startY: fieldRect.height
-                PathLine { x: cellPixelSize * 0.125 ; y: fieldRect.height - cellPixelSize * 0.125 }
-                PathLine { x: fieldRect.width - cellPixelSize * 0.125; y: cellPixelSize * 0.125 }
-                PathLine { x: fieldRect.width; y: 0 }
-                PathLine { x: fieldRect.width; y: fieldRect.height }
-                PathLine { x: 0; y: fieldRect.height }
+                GameField{
+                    id: gameField
+                    height: parent.height - cellPixelSize * 0.25
+                    width: parent.width - cellPixelSize * 0.25
+                    anchors.centerIn: parent
+                    anchors.margins: cellPixelSize * 0.125
+                }
             }
-        }
 
-        GameField{
-            id: gameField
-            height: parent.height - cellPixelSize * 0.25
-            width: parent.width - cellPixelSize * 0.25
-            anchors.centerIn: parent
-            anchors.margins: cellPixelSize * 0.125
+            //Border Padding
+            // Rectangle{
+            //     id: paddingRectangle
+
+            //     anchors.top: headerRect.top
+            //     anchors.left: headerRect.left
+            //     anchors.right: headerRect.right
+            //     anchors.bottom: fieldRect.bottom
+            //     anchors.margins: -border.width - cellPixelSize / 4
+            //     color: "transparent"
+            //     border.color: "black"
+            //     border.width: cellPixelSize / 8
+            //     radius: 4
+            // }
+
         }
     }
 

@@ -1,4 +1,4 @@
-QT += quick
+QT += quick widgets
 
 HEADERS += \
     GameHandler.h \

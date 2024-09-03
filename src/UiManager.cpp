@@ -1,6 +1,8 @@
 #include "UiManager.h"
 
+#include <QApplication>
 #include <QScreen>
+#include <QStyle>
 
 namespace minesweeper {
 
@@ -16,6 +18,11 @@ UiManager::UiManager(QObject *parent)
     initTranslator();
 
     loadUi();
+}
+
+int UiManager::titleBarSize() const
+{
+    return QApplication::style()->pixelMetric(QStyle::PM_TitleBarHeight);
 }
 
 //private

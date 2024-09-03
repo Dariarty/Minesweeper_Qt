@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QGuiApplication>
 #include <QIcon>
 
@@ -7,7 +8,7 @@ int main(int argc, char *argv[])
 {
     int exitCode = -101;
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/resources/icons/greyMine256px.png"));
 
     minesweeper::UiManager uiManager;
