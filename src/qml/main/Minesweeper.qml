@@ -46,17 +46,16 @@ ApplicationWindow{
     }
 
     //Height of window in windowed mode
-    //Adjusted for not fitting into available screen space
-    //Adjusted for too little window
     property int windowedHeight: {
+        //Adjusted for not fitting into available screen space and too little window size
         Math.max(Math.min(referenceGameHeight,
                           screen.desktopAvailableHeight - UiManager.titleBarSize),
                  400)
     }
+
     //Width of window in windowed mode
-    //Adjusted for not fitting into available screen space
-    //Adjusted for too little window
     property int windowedWidth: {
+        //Adjusted for not fitting into available screen space and too little window size
         Math.max(Math.min(referenceGameWidth,
                           screen.desktopAvailableWidth),
                  400)
