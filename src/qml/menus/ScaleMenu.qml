@@ -13,7 +13,7 @@ Menu{
     //Default number of scale options
     property int defaultNumberOfOptions
 
-    contentWidth: 205
+    contentWidth: UiManager.isWebAssembly ? 300 : 205
     topPadding: 0
     bottomPadding: 0
 

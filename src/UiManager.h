@@ -17,11 +17,17 @@ class UiManager : public QObject
 
     Q_PROPERTY(int titleBarSize READ titleBarSize CONSTANT)
 
+    Q_PROPERTY(bool isAndroidDevice READ isAndroidDevice CONSTANT)
+    Q_PROPERTY(bool isWebAssembly READ isWebAssembly CONSTANT)
 public:
     UiManager(QObject *parent = NULL);
     ~UiManager() = default;
 
     int titleBarSize() const;
+
+    //For platform-specific features
+    bool isAndroidDevice() const;
+    bool isWebAssembly() const;
 
 private:
     void qmlRegister();

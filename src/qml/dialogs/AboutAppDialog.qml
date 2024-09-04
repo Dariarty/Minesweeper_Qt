@@ -6,9 +6,9 @@ Dialog {
     id: appInfoDialog
     title: qsTr("About app")
 
-    //Position dialog at root window center
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
+    //Position dialog at window center
+    parent: Overlay.overlay
+    anchors.centerIn: parent
 
     Label{
         text: qsTr("Minesweeper game") + "\n\n" +
@@ -17,6 +17,8 @@ Dialog {
                    "github.com/Dariarty/Minesweeper_Qt"
     }
 
+    implicitWidth: UiManager.isWebAssembly ? 350 : 250
+    implicitHeight: 250
     standardButtons: Dialog.Ok
 
     Material.accent: "black"

@@ -298,7 +298,7 @@
     <message>
         <location filename="../qml/menus/ScaleMenu.qml" line="98"/>
         <source>Custom cell scale...</source>
-        <translation>Задать другой размер клеток...</translation>
+        <translation>Другой размер клеток...</translation>
     </message>
 </context>
 </TS>

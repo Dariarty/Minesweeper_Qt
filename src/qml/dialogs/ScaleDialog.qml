@@ -6,11 +6,11 @@ Dialog {
         id: scaleDialog
         title: qsTr("Select cell size")
 
-        //Position dialog at root window center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
+        //Position dialog at window center
+        parent: Overlay.overlay
+        anchors.centerIn: parent
 
-        implicitWidth: 210
+        implicitWidth: 250
         implicitHeight: 200
 
         Material.accent: "black"

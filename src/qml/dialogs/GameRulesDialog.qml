@@ -8,12 +8,13 @@ Dialog {
     id: gameRulesDialog
     title: qsTr("Game Rules")
 
-    //Position dialog at root window center
-    x: parent.width * 0.05
-    y: parent.height * 0.05
+    parent: Overlay.overlay
 
-    implicitWidth: parent.width * 0.9
-    implicitHeight: parent.height * 0.9
+    //Position dialog at window center
+    anchors.centerIn: parent
+
+    implicitWidth: Math.min(parent.width * 0.9, 700)
+    implicitHeight: Math.min(parent.height * 0.9, 800)
 
     contentItem: GameRulesHelp{ }
 

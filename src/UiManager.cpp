@@ -25,6 +25,24 @@ int UiManager::titleBarSize() const
     return QApplication::style()->pixelMetric(QStyle::PM_TitleBarHeight);
 }
 
+bool UiManager::isAndroidDevice() const
+{
+#ifdef Q_OS_ANDROID
+    return true;
+#else
+    return false;
+#endif
+}
+
+bool UiManager::isWebAssembly() const
+{
+#if defined(__EMSCRIPTEN__) || defined(__wasm__) || defined(__wasm32__) || defined(__wasm64__)
+    return true;
+#else
+    return false;
+#endif
+}
+
 //private
 void UiManager::qmlRegister()
 {

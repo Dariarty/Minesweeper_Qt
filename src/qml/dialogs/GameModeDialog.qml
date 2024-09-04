@@ -6,12 +6,12 @@ Dialog {
         id: gameModeDialog
         title: qsTr("New custom rules")
 
-        implicitWidth: 300
+        implicitWidth: 350
         implicitHeight: 300
 
-        //Position dialog at root window center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
+        //Position dialog at window center
+        parent: Overlay.overlay
+        anchors.centerIn: parent
 
         Material.accent: "black"
 

@@ -1,16 +1,27 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Controls.Universal
 
 ScrollView{
     id: gameRulesRect
-    width: parent.width
-    height: 300
+    width: parent.width - scrollBar.width
+    height: parent.height
+    Universal.accent: Universal.Steel
     ScrollBar.horizontal: ScrollBar{
         policy: ScrollBar.AlwaysOff
+    }
+    ScrollBar.vertical: ScrollBar{
+        id: scrollBar
+        anchors.left: gameRulesRect.right
+        height: parent.height
     }
 
     TextArea{
         enabled: false
+        background: Rectangle{
+            color: "transparent"
+        }
+
         color: "black"
         text: qsTr("Minesweeper is a classic puzzle game where the objective is" +
                    "to clear a grid without detonating any hidden mines") + "\n\n" +

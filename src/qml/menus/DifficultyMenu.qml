@@ -9,6 +9,8 @@ Menu{
     id: difficultyMenu
     title: qsTr("Change difficulty")
 
+    contentWidth: UiManager.isWebAssembly ? 270 : 200
+
     topPadding: 0
     bottomPadding: 0
 

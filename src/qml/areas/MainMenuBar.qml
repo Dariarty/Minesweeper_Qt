@@ -25,6 +25,7 @@ MenuBar{
     Menu{
         title: qsTr("Game")
 
+        contentWidth: UiManager.isWebAssembly ? 250 : 200
         topPadding: 0
         bottomPadding: 0
 
@@ -49,6 +50,7 @@ MenuBar{
     Menu{
         title: qsTr("Settings")
 
+        contentWidth: UiManager.isWebAssembly ? 250 : 200
         topPadding: 0
         bottomPadding: 0
 
@@ -67,6 +69,7 @@ MenuBar{
     Menu{
         title: qsTr("Help")
 
+        contentWidth: UiManager.isWebAssembly ? 250 : 200
         topPadding: 0
         bottomPadding: 0
 
