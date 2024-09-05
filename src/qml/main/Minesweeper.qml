@@ -19,12 +19,7 @@ ApplicationWindow{
     property int fieldCellsCountWidth
     property int fieldCellsCountHeight
 
-    //When cell pixel size changes, center window if out of bounds
-    onCellPixelSizeChanged: {
-        centerWindowIfOutOfBounds()
-    }
-
-    //When entering windowed mode, resize window into reference size and check if window will be out of bounds
+    //When entering windowed mode, resize window into reference size and center window
     onVisibilityChanged: (visibility) => {
 
         if(visibility === Window.Windowed){
@@ -32,7 +27,8 @@ ApplicationWindow{
             height = windowedHeight
             minimumWidth = windowedWidth
             width = windowedWidth
-            centerWindowIfOutOfBounds()
+
+            centerWindow()
         }
     }
 
@@ -66,6 +62,8 @@ ApplicationWindow{
         if(visibility === Window.Windowed){
             minimumHeight = windowedHeight
             height = windowedHeight
+
+            repositionWindow()
         }
     }
 
@@ -74,6 +72,8 @@ ApplicationWindow{
         if(visibility === Window.Windowed){
             minimumWidth = windowedWidth
             width = windowedWidth
+
+            repositionWindow()
         }
     }
 
@@ -88,27 +88,23 @@ ApplicationWindow{
                 fieldCellsCountHeight = cellsCountHeight
             }
 
-            //Center window when new game starts, if out of bounds
-            centerWindowIfOutOfBounds()
+            repositionWindow()
         }
     }
 
-    //If window is out of screen after field resize, center window
-    function centerWindowIfOutOfBounds(){
-        if(root.visibility == Window.Windowed && (root.x + root.width > screen.desktopAvailableWidth
-                || root.y - UiManager.titleBarSize +
-            Math.min((fieldCellsCountHeight + 3.25) * cellPixelSize +
-                     topMenu.contentItem.height, screen.desktopAvailableHeight
-                     - UiManager.titleBarSize) > screen.desktopAvailableHeight - UiManager.titleBarSize
-                || root.x < 0
-                || root.y < 0)){
-            root.x =
-                    screen.width / 2 - root.width / 2
-            root.y =
-                    (screen.desktopAvailableHeight + UiManager.titleBarSize ) / 2 -
-                    Math.min((fieldCellsCountHeight + 3.25) * cellPixelSize +
-                    topMenu.contentItem.height, screen.desktopAvailableHeight
-                    - UiManager.titleBarSize) / 2
+    function centerWindow(){
+        if(root.visibility == Window.Windowed){
+            root.x = ( screen.desktopAvailableWidth - root.windowedWidth ) / 2
+            root.y = (screen.desktopAvailableHeight + UiManager.titleBarSize - root.windowedHeight) / 2
+        }
+    }
+
+    function repositionWindow(){
+        if(root.visibility == Window.Windowed){
+            if(root.x < 0) root.x = 0
+            if(root.y < UiManager.titleBarSize) root.y = UiManager.titleBarSize
+            if(root.x + root.windowedWidth > screen.desktopAvailableWidth) root.x = screen.desktopAvailableWidth - root.windowedWidth
+            if(root.y + root.windowedHeight > screen.desktopAvailableHeight) root.y = screen.desktopAvailableHeight - root.windowedHeight
         }
     }
 
@@ -134,8 +130,10 @@ ApplicationWindow{
         flickableDirection: {
             if(flick.contentHeight > flick.height && flick.contentWidth > flick.width)
                 Flickable.HorizontalAndVerticalFlick
-            else if (flick.contentHeight > flick.height) Flickable.VerticalFlick
-                else Flickable.HorizontalFlick
+            else if (flick.contentHeight > flick.height)
+                Flickable.VerticalFlick
+            else
+                Flickable.HorizontalFlick
         }
         boundsBehavior: Flickable.DragAndOvershootBounds
         contentHeight: flickContentWrapper.height
