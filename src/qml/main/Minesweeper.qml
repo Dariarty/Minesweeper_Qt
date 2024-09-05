@@ -102,9 +102,14 @@ ApplicationWindow{
     function repositionWindow(){
         if(root.visibility == Window.Windowed){
             if(root.x < 0) root.x = 0
+
             if(root.y < UiManager.titleBarSize) root.y = UiManager.titleBarSize
-            if(root.x + root.windowedWidth > screen.desktopAvailableWidth) root.x = screen.desktopAvailableWidth - root.windowedWidth
-            if(root.y + root.windowedHeight > screen.desktopAvailableHeight) root.y = screen.desktopAvailableHeight - root.windowedHeight
+
+            if(root.x + root.windowedWidth > screen.desktopAvailableWidth)
+                root.x = screen.desktopAvailableWidth - root.windowedWidth
+
+            if(root.y + root.windowedHeight > screen.desktopAvailableHeight)
+                root.y = screen.desktopAvailableHeight - root.windowedHeight
         }
     }
 

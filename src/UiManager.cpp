@@ -11,7 +11,7 @@ UiManager::UiManager(QObject *parent)
     : QObject(parent)
     , translator_(new Translator())
     , gameHandler_(new GameHandler())
-    , engine_(new QQmlApplicationEngine(this))
+    , engine_(new QQmlApplicationEngine())
 {
     qmlRegister();
 
@@ -19,6 +19,8 @@ UiManager::UiManager(QObject *parent)
 
     loadUi();
 }
+
+UiManager::~UiManager() {}
 
 int UiManager::titleBarSize() const
 {

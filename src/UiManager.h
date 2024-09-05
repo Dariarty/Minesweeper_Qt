@@ -21,7 +21,7 @@ class UiManager : public QObject
     Q_PROPERTY(bool isWebAssembly READ isWebAssembly CONSTANT)
 public:
     UiManager(QObject *parent = NULL);
-    ~UiManager() = default;
+    ~UiManager();
 
     int titleBarSize() const;
 
@@ -37,7 +37,7 @@ private:
     QSharedPointer<Translator> translator_;
     QSharedPointer<GameHandler> gameHandler_;
 
-    QQmlApplicationEngine *engine_;
+    QScopedPointer<QQmlApplicationEngine> engine_;
 };
 
 } // namespace minesweeper
