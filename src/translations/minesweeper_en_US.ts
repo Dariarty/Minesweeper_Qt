@@ -32,27 +32,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="23"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="25"/>
         <source>Beginner</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="31"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="33"/>
         <source>Intermediate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="39"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="41"/>
         <source>Expert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="62"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="64"/>
         <source>Mines: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/menus/DifficultyMenu.qml" line="115"/>
+        <location filename="../qml/menus/DifficultyMenu.qml" line="117"/>
         <source>New custom rules...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -91,92 +91,97 @@
 <context>
     <name>GameRulesHelp</name>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="15"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="26"/>
         <source>Minesweeper is a classic puzzle game where the objective isto clear a grid without detonating any hidden mines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="17"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="28"/>
         <source>The game board consists of a grid of squares, some of which contain mines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="19"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="30"/>
         <source>Numbers indicate how many mines are adjacent to that cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="20"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="31"/>
         <source>Gameplay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="21"/>
-        <source>Use LEFT MOUSE CLICK on any cell to reveal it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="22"/>
-        <source>Use RIGHT CLICK to mark a cell you suspect contains a mine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="23"/>
-        <source>When you open a square that contains a mine, you lose</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="24"/>
-        <source>When you open a square that does not touch any mines, it will be empty and the adjacent squares will automatically open in all directions until reaching squares that contain numbers.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="27"/>
-        <source>Use numbers to deduce mines location. A number indicates how many mines are adjacent to that square.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="29"/>
-        <source>Winning:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="30"/>
-        <source>The game is won by revealing all non-mine squares, leaving only the mines covered or flagged correctly</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qml/components/GameRulesHelp.qml" line="32"/>
-        <source>Losing:</source>
+        <source>Click LEFT MOUSE BUTTON on any cell to reveal it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/GameRulesHelp.qml" line="33"/>
-        <source>The game ends immediately if you click on a square with a mine</source>
+        <source>Click RIGHT MOUSE BUTTON or HOLD LEFT MOUSE BUTTON to flag a cell you suspect contains a mine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/GameRulesHelp.qml" line="34"/>
-        <source>Game modes:</source>
+        <source>On mobile, click a cell to reveal it, hold to place a flag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/GameRulesHelp.qml" line="35"/>
-        <source>Beginner: 9x9 field, 10 mines</source>
+        <source>When you open a square that contains a mine, you lose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/GameRulesHelp.qml" line="36"/>
+        <source>When you open a square that does not touch any mines, it will be empty and the adjacent squares will automatically open in all directions until reaching squares that contain numbers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="39"/>
+        <source>Use numbers to deduce mines location. A number indicates how many mines are adjacent to that square.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="41"/>
+        <source>Winning:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="42"/>
+        <source>The game is won by revealing all non-mine squares, leaving only the mines covered or flagged correctly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="44"/>
+        <source>Losing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="45"/>
+        <source>The game ends immediately if you click on a square with a mine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="46"/>
+        <source>Game modes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="47"/>
+        <source>Beginner: 9x9 field, 10 mines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/GameRulesHelp.qml" line="48"/>
         <source>Intermediate: 16x16 field, 40 mines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="37"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="49"/>
         <source>Expert: 30x16 field, 99 mines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/GameRulesHelp.qml" line="38"/>
+        <location filename="../qml/components/GameRulesHelp.qml" line="50"/>
         <source>Custom: fields from 5x5 to 100x100 are supported, with number of mines from 1 to number of cells in a field minus one</source>
         <translation type="unfinished"></translation>
     </message>
@@ -197,32 +202,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MainMenuBar.qml" line="37"/>
+        <location filename="../qml/areas/MainMenuBar.qml" line="38"/>
         <source>Start a new game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MainMenuBar.qml" line="42"/>
+        <location filename="../qml/areas/MainMenuBar.qml" line="43"/>
         <source>Exit app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MainMenuBar.qml" line="50"/>
+        <location filename="../qml/areas/MainMenuBar.qml" line="51"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MainMenuBar.qml" line="68"/>
+        <location filename="../qml/areas/MainMenuBar.qml" line="70"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MainMenuBar.qml" line="74"/>
+        <location filename="../qml/areas/MainMenuBar.qml" line="77"/>
         <source>Game Rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/areas/MainMenuBar.qml" line="79"/>
+        <location filename="../qml/areas/MainMenuBar.qml" line="82"/>
         <source>About application</source>
         <translation type="unfinished"></translation>
     </message>

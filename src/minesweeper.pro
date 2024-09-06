@@ -1,4 +1,6 @@
-QT += quick widgets
+QT += quick widgets qml
+
+CONFIG += C++17
 
 HEADERS += \
     GameHandler.h \

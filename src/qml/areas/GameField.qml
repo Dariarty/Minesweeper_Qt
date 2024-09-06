@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Imagine 2.12
 import QtQuick.Shapes
+import QtQml.Models
 
 import "../components"
 
@@ -14,17 +15,6 @@ Rectangle {
     }
 
     color: "lightgrey"
-
-    Connections{
-        target: GameHandler
-
-        function onNewGameStarted(cellsCountWidth, cellsCountHeight){
-            fieldModel.clear()
-            for(var i = 0; i < cellsCountWidth * cellsCountHeight; i++){
-                fieldModel.append({})
-            }
-        }
-    }
 
     ListModel{
         id: fieldModel
@@ -43,6 +33,23 @@ Rectangle {
 
         delegate: Cell{
             id: cell
+            cellState: elementState
+        }
+
+    }
+
+    Connections{
+        target: GameHandler
+
+        function onNewGameStarted(cellsCountWidth, cellsCountHeight){
+            fieldModel.clear()
+            for(var i = 0; i < cellsCountWidth * cellsCountHeight; i++){
+                fieldModel.append({elementState: 9})
+            }
+        }
+
+        function onCellOpened(cellIndex, cellState) {
+            fieldModel.get(cellIndex).elementState = cellState
         }
 
     }

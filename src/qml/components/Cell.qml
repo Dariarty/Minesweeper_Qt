@@ -1,19 +1,74 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Shapes
+import QtQml.Models
 
 MouseArea{
     id: cell
     height: cellPixelSize
     width: cellPixelSize
 
-    readonly property bool flagged: !opened && cellImage.active
+    readonly property bool flagged: cellImage.active
+
+    property bool containsMine: false
+
+    property bool isHeld: false
+
+    property bool opened: ( cell.pressedButtons & Qt.LeftButton ) && !flagged && !isHeld
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
 
+    /// -2 : losing mine (with red background)
+    /// -1 : mine
+    /// 0 to 8 : number
+    /// 9 : default
+    property int cellState: 9
+
     enabled: !opened
 
-    property bool opened: ( cell.pressedButtons & Qt.LeftButton ) && !flagged
+    Connections{
+        target: GameHandler
+
+        function onGameWon(){
+            cell.enabled = false
+            if(!opened) toggleFlag()
+        }
+
+        function onGameLost(losingIndex){
+            cell.enabled = false
+            if(index===losingIndex){
+                cellContentRect.color = "red"
+            }
+
+            if(containsMine && !cell.flagged){
+                opened = true
+                cellImage.loadMineImage()
+            }
+
+            else if(!containsMine && cell.flagged){
+                opened = true
+                cellImage.loadMineImage()
+                crossImage.visible = true
+            }
+        }
+    }
+
+    onCellStateChanged: {
+        //open cell
+        if(cellState >= 0) opened = true
+
+        //if flagged, remove flag
+        if(flagged && cellState >= 0) cellImage.unLoad()
+
+        if(cellState >= 0){
+            //cell is a number
+            cellText.text = cellState
+            cellText.visible = true
+        }
+        else{
+            containsMine = true
+        }
+    }
 
     Rectangle {
         id: cellRect
@@ -92,25 +147,46 @@ MouseArea{
                     active = true
                 }
             }
+
+            Image{
+                id: crossImage
+                source: "qrc:/resources/icons/cross.png"
+                anchors.fill: parent
+                visible: false
+                anchors.margins: cellPixelSize / 16
+            }
         }
     }
 
+    //Toggle flag on cell held
+    onPressAndHold: {
+        isHeld = true
+        toggleFlag()
+    }
+
+    onReleased: isHeld = false
+
     onClicked: (mouse) => {
-        //Place/remove flag on right mouse click if cell not opened
+        //Toggle flag on right mouse click if cell not opened
         if(mouse.button === Qt.RightButton && !cell.opened){
-            if(cell.flagged){
-                cellImage.unLoad()
-            }
-            else{
-                cellImage.loadFlagImage()
-            }
+            toggleFlag()
         }
 
-        //Reveal cell
+        //Reveal cell if not opened
         if(mouse.button === Qt.LeftButton && !cell.flagged && !cell.opened){
-            console.log("requested revealing cell: " + index)
+            GameHandler.revealCell(index)
         }
 
+    }
+
+    //Place/remove flag from cell
+    function toggleFlag(){
+        if(cell.flagged){
+            cellImage.unLoad()
+        }
+        else{
+            cellImage.loadFlagImage()
+        }
     }
 
 }

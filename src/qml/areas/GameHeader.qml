@@ -16,7 +16,7 @@ Rectangle {
     Text{
         id: flagCountText
         color: "#484c54"
-        text: "54321"
+        text: "543"
         anchors.leftMargin: cellPixelSize * 0.15
         anchors.left: parent.left
         anchors.top: parent.top
@@ -32,7 +32,7 @@ Rectangle {
         id: timerText
         anchors.margins: cellPixelSize * 0.2
         color: "#484c54"
-        text: "67890"
+        text: "678"
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom

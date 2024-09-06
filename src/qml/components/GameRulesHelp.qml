@@ -29,8 +29,9 @@ ScrollView{
                    "some of which contain mines") + "\n\n" +
               qsTr("Numbers indicate how many mines are adjacent to that cell") + "\n\n" +
               qsTr("Gameplay:") + "\n" +
-              qsTr("Use LEFT MOUSE CLICK on any cell to reveal it") + "\n" +
-              qsTr("Use RIGHT CLICK to mark a cell you suspect contains a mine") + "\n\n" +
+              qsTr("Click LEFT MOUSE BUTTON on any cell to reveal it") + "\n" +
+              qsTr("Click RIGHT MOUSE BUTTON or HOLD LEFT MOUSE BUTTON to flag a cell you suspect contains a mine") + "\n\n" +
+              qsTr("On mobile, click a cell to reveal it, hold to place a flag") + "\n\n" +
               qsTr("When you open a square that contains a mine, you lose") + "\n\n" +
               qsTr("When you open a square that does not touch any mines, it will be empty " +
                    "and the adjacent squares will automatically open in all directions until" +
