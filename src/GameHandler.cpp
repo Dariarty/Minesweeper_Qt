@@ -1,7 +1,5 @@
 #include "GameHandler.h"
 
-#include <QDebug>
-
 #include <algorithm>
 #include <chrono>
 #include <random>
@@ -25,12 +23,6 @@ void GameHandler::initNewGame()
 
     //signal for gui
     emit newGameStarted(cellsCountWidth_, cellsCountHeight_, minesCount_);
-
-    //Debug new game values
-    qDebug() << "Started new game with rules:";
-    qDebug() << "Field width:" << cellsCountWidth_;
-    qDebug() << "Field height:" << cellsCountHeight_;
-    qDebug() << "Mines count:" << minesCount_ << "\n";
 }
 
 void GameHandler::initNewGame(quint8 cellsCountWidth, quint8 cellsCountHeight, quint32 minesCount)
@@ -47,8 +39,6 @@ void GameHandler::revealCell(quint16 cellIndex)
 {
     if (!gameActive_)
         return;
-
-    qDebug() << "Played requested revealing cell: " + QString::number(cellIndex);
 
     //If field is empty, this must be a new game
     if (field_.empty()) {
@@ -97,7 +87,6 @@ void GameHandler::revealCell(quint16 cellIndex)
 
     //Game is Won
     gameActive_ = false;
-    qDebug() << "Game Victory!";
     emit gameWon();
 }
 
@@ -141,8 +130,6 @@ void GameHandler::generateField(quint16 startingCellIndex)
                 field_[i]++;
         }
     }
-
-    qDebug() << "Field generation complete";
 }
 
 QList<quint16> GameHandler::adjacentCells(quint16 cellIndex)

@@ -18,10 +18,9 @@ MouseArea{
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-    /// -2 : losing mine (with red background)
-    /// -1 : mine
-    /// 0 to 8 : number
-    /// 9 : default
+    // -1 : mine
+    // 0 to 8 : number
+    // 9 : default
     property int cellState: 9
 
     enabled: !opened
@@ -31,7 +30,7 @@ MouseArea{
 
         function onGameWon(){
             cell.enabled = false
-            if(!opened) toggleFlag()
+            if(!opened && !flagged) toggleFlag()
         }
 
         function onGameLost(losingIndex){

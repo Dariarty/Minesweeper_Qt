@@ -62,8 +62,6 @@ Menu{
             ButtonGroup.group: cellScaleButtonGroup
 
             onTriggered: {
-                console.log("Set CellPixelSize From Menu: " + cellScale + "\n")
-
                 chosen = true
                 root.cellPixelSize = cellScale
             }
