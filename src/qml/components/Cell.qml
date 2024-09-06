@@ -18,9 +18,9 @@ MouseArea{
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-    // -1 : mine
+    //    - 1 : mine
     // 0 to 8 : number
-    // 9 : default
+    //      9 : default
     property int cellState: 9
 
     enabled: !opened
@@ -147,6 +147,7 @@ MouseArea{
                 }
             }
 
+            //Cross icon to mark uncorrectly guessed mines at loss
             Image{
                 id: crossImage
                 source: "qrc:/resources/icons/cross.png"

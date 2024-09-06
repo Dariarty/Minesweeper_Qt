@@ -34,6 +34,7 @@ Rectangle {
         delegate: Cell{
             id: cell
             cellState: elementState
+            parent: fieldGridView
         }
 
     }

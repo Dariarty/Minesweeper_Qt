@@ -40,9 +40,9 @@ private:
     quint32 minesCount_;
 
     /// game field cell values:
-    /// -1: a cell containing a bomb
-    /// from 0 to 8: empty cell with a corresponding number
-    /// 9 - already revealed cell
+    ///     -1 : a cell containing a bomb
+    /// 0 to 8 : empty cell with a corresponding number
+    ///      9 : already revealed cell
     QVector<qint8> field_;
 
     //Game is in progress

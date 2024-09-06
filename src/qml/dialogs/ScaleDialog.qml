@@ -34,8 +34,8 @@ Dialog {
             anchors.verticalCenter: parent.verticalCenter
 
             //min and max values
-            from: 10
-            to: 100
+            from: 12
+            to: 120
         }
 
         //Emit signal to add new scale option
