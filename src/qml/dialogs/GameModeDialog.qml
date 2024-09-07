@@ -84,10 +84,9 @@ Dialog {
                     Material.accent: Material.Grey
                     editable: true
 
-                    //Field Constraints are from 5x5 to 50x50
+                    //Field Constraints are from 5x5 to 99x99
                     from: 2
-                    //to: 99
-                    to: 1000
+                    to: 99
 
                     //default value
                     value: 16
@@ -140,10 +139,9 @@ Dialog {
                     Material.accent: Material.Grey
                     editable: true
 
-                    //field contraints are from 5x5 to 50x50
+                    //field contraints are from 5x5 to 99x99
                     from: 2
-                    //to: 99
-                    to: 1000
+                    to: 99
 
                     //default value
                     value: 16

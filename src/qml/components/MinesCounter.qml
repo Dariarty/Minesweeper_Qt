@@ -40,12 +40,11 @@ Rectangle{
         anchors.margins: cellPixelSize / 16
 
         Text{
+            id: shadowText
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.centerIn: parent
-
-            id: shadowText
             font.family: dseg7Font.name
             verticalAlignment: Qt.AlignVCenter
             font.pixelSize: cellPixelSize * 1.25
