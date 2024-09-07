@@ -23,6 +23,7 @@ MenuBar{
 
     //Game Menu
     Menu{
+        id: gameMenu
         title: qsTr("Game")
 
         contentWidth: UiManager.isWebAssembly ? 250 : 200
@@ -38,12 +39,6 @@ MenuBar{
           text: qsTr("Start a new game")
           onTriggered: GameHandler.initNewGame()
         }
-
-        MenuItem{
-          text: qsTr("Exit app")
-          onTriggered: Qt.quit()
-        }
-
     }
 
     //Settings Menu
