@@ -16,5 +16,6 @@
         <file>qml/components/MineImage.qml</file>
         <file>qml/components/FlagImage.qml</file>
         <file>qml/components/Cell.qml</file>
+        <file>qml/components/ResetButton.qml</file>
     </qresource>
 </RCC>

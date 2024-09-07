@@ -179,6 +179,14 @@ MouseArea{
 
     }
 
+    onIsHeldChanged: {
+        if(cell.isHeld) root.fieldPressChanged(false)
+    }
+
+    onContainsPressChanged: {
+        root.fieldPressChanged(cell.containsPress)
+    }
+
     //Place/remove flag from cell
     function toggleFlag(){
         if(cell.flagged){

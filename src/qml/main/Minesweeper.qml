@@ -286,12 +286,14 @@ ApplicationWindow{
 
     signal scaleOptionAdded(int newCellSize)
 
+    signal fieldPressChanged(bool fieldPressed)
+
+    signal difficultyOptionAdded(int cellsCountWidth, int cellsCountHeight, int minesCount)
+
     //Dialog to choose cell scale
     ScaleDialog{
         id: scaleDialog
     }
-
-    signal difficultyOptionAdded(int cellsCountWidth, int cellsCountHeight, int minesCount)
 
     //Dialog to choose difficulty
     GameModeDialog{
