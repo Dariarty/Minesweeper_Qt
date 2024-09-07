@@ -98,4 +98,8 @@ MouseArea{
             }
         }
     }
+
+    onWidthChanged: {
+        parent.reEnableElements()
+    }
 }

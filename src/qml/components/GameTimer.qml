@@ -7,7 +7,7 @@ Text{
     anchors.right: parent.right
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    font.family: seg7Font.name
+    font.family: dseg7Font.name
     font.pixelSize: cellPixelSize * 1.5
     font.weight: Font.ExtraBold
     visible: width < header.width
@@ -22,5 +22,9 @@ Text{
         function onTimerTick(){
             timerText.text = Number(timerText.text) + 1
         }
+    }
+
+    onWidthChanged: {
+        parent.reEnableElements()
     }
 }

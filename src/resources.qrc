@@ -17,6 +17,6 @@
         <file>resources/icons/surprised.png</file>
         <file>resources/icons/greyMine256px.png</file>
         <file>resources/fonts/Bungee-Regular.ttf</file>
-        <file>resources/fonts/seg7.ttf</file>
+        <file>resources/fonts/DSEG7Classic-Bold.ttf</file>
     </qresource>
 </RCC>
