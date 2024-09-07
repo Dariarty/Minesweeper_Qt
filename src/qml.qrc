@@ -17,5 +17,7 @@
         <file>qml/components/FlagImage.qml</file>
         <file>qml/components/Cell.qml</file>
         <file>qml/components/ResetButton.qml</file>
+        <file>qml/components/GameTimer.qml</file>
+        <file>qml/components/MinesCounter.qml</file>
     </qresource>
 </RCC>

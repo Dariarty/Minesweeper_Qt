@@ -187,6 +187,10 @@ MouseArea{
         root.fieldPressChanged(cell.containsPress)
     }
 
+    onFlaggedChanged: {
+        if(cellState >= 0) root.flagUpdated(cell.flagged)
+    }
+
     //Place/remove flag from cell
     function toggleFlag(){
         if(cell.flagged){

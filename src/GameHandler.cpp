@@ -13,10 +13,16 @@ namespace minesweeper {
 GameHandler::GameHandler(QObject *parent)
     : QObject(parent)
     , gameActive_(false)
-{}
+    , timer_(new QTimer())
+{
+    connect(timer_.data(), &QTimer::timeout, this, &GameHandler::timerTick);
+}
 
 void GameHandler::initNewGame()
 {
+    //Stop timer in case previous game hasn't ended
+    timer_->stop();
+
     //clear field and release memory
     field_.clear();
     field_.squeeze();
@@ -54,6 +60,7 @@ void GameHandler::clickCell(const quint16 &cellIndex)
     if (field_[cellIndex] == -1) {
         //Write game as inactive because lost
         gameActive_ = false;
+        timer_->stop();
 
         for (int i = 0; i < field_.count(); i++) {
             if (field_[i] == -1)
@@ -80,6 +87,7 @@ void GameHandler::clickCell(const quint16 &cellIndex)
 
     //Game is Won
     gameActive_ = false;
+    timer_->stop();
     emit gameWon();
 }
 
@@ -123,6 +131,10 @@ void GameHandler::generateField(const quint16 &startingCellIndex)
                 field_[i]++;
         }
     }
+
+    //Field is generated, start timer
+    timer_->setInterval(1000);
+    timer_->start();
 }
 
 void GameHandler::revealCell(const quint16 &cellIndex)

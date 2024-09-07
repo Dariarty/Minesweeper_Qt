@@ -290,6 +290,8 @@ ApplicationWindow{
 
     signal difficultyOptionAdded(int cellsCountWidth, int cellsCountHeight, int minesCount)
 
+    signal flagUpdated(bool isAdded)
+
     //Dialog to choose cell scale
     ScaleDialog{
         id: scaleDialog

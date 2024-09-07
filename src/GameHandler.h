@@ -2,7 +2,7 @@
 #define GAMEHANDLER_H
 
 #include <QObject>
-#include <QSet>
+#include <QTimer>
 #include <QVector>
 
 namespace minesweeper {
@@ -32,6 +32,8 @@ signals:
 
     void gameLost(quint16 losingIndex);
 
+    void timerTick();
+
     void gameWon();
 
 private:
@@ -57,6 +59,9 @@ private:
 
     //get adjacent cell indexes
     QVector<quint16> adjacentCells(const quint16 &cellIndex);
+
+    //timer for game time
+    QScopedPointer<QTimer> timer_;
 };
 
 } // namespace minesweeper
