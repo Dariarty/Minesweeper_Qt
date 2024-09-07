@@ -53,13 +53,13 @@ MouseArea{
     }
 
     onCellStateChanged: {
-        //open cell
-        if(cellState >= 0) opened = true
+        if(cellState >=0){
+            //unload flag image
+            if(flagged) cellImage.unLoad()
 
-        //if flagged, remove flag
-        if(flagged && cellState >= 0) cellImage.unLoad()
+            //open cell
+            opened = true
 
-        if(cellState >= 0){
             //cell is a number
             cellText.text = cellState
             cellText.visible = true
