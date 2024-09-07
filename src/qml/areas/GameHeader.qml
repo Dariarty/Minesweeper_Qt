@@ -36,11 +36,6 @@ Rectangle {
     color: "lightgrey"
 
     function reEnableElements(){
-        console.log(minesCounter.width)
-        console.log(resetButton.width)
-        console.log(timer.width)
-        console.log(header.width)
-
         if(Math.max(minesCounter.width, timer.width) * 2
                 + resetButton.width + 0.8 * cellPixelSize <= header.width){
             minesCounter.visible = true
