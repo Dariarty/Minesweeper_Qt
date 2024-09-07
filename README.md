@@ -1,5 +1,5 @@
 # Minesweeper_Qt
-Minesweeper Game Made with C++/Qt/QML
+Minesweeper Game with improved classic GUI made with C++/Qt/QML
 
 # Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
