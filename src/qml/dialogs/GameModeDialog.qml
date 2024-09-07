@@ -30,10 +30,23 @@ Dialog {
         }
 
         //Emit signal to add new difficulty option
-        onAccepted: root.difficultyOptionAdded(
-                        widthSpinBox.value,
-                        heightSpinBox.value,
-                        minesSpinBox.value)
+        onAccepted: {
+            var acceptedWidth = widthSpinBox.value
+            var acceptedHeight = heightSpinBox.value
+            var acceptedMinesCount = minesSpinBox.value
+
+            if(acceptedWidth > 99) acceptedWidth = 99
+            else if(acceptedWidth < 2) acceptedWidth = 2
+
+            if(acceptedHeight > 99) acceptedHeight = 99
+            else if(acceptedHeight < 2) acceptedHeight = 2
+
+            if(acceptedMinesCount < 1) acceptedMinesCount = 1
+            else if(acceptedMinesCount >= acceptedWidth * acceptedHeight)
+                acceptedMinesCount = acceptedWidth * acceptedHeight - 1
+
+            root.difficultyOptionAdded(acceptedWidth, acceptedHeight, acceptedMinesCount)
+        }
 
         contentItem: Rectangle{
             id: contentRect

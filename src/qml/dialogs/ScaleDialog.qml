@@ -39,6 +39,13 @@ Dialog {
         }
 
         //Emit signal to add new scale option
-        onAccepted: root.scaleOptionAdded(scaleSpinBox.value)
+        onAccepted: {
+            var acceptedScale = scaleSpinBox.value
+
+            if(acceptedScale < 12) acceptedScale = 12
+            if(acceptedScale > 120) acceptedScale = 120
+
+            root.scaleOptionAdded(acceptedScale)
+        }
 
 }
