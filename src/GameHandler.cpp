@@ -4,6 +4,9 @@
 #include <chrono>
 #include <random>
 
+#include <QDebug>
+#include <QElapsedTimer>
+
 namespace minesweeper {
 
 //public
@@ -25,7 +28,9 @@ void GameHandler::initNewGame()
     emit newGameStarted(cellsCountWidth_, cellsCountHeight_, minesCount_);
 }
 
-void GameHandler::initNewGame(quint8 cellsCountWidth, quint8 cellsCountHeight, quint32 minesCount)
+void GameHandler::initNewGame(const quint8 &cellsCountWidth,
+                              const quint8 &cellsCountHeight,
+                              const quint32 &minesCount)
 {
     //write new values
     cellsCountWidth_ = cellsCountWidth;
@@ -35,7 +40,7 @@ void GameHandler::initNewGame(quint8 cellsCountWidth, quint8 cellsCountHeight, q
     initNewGame();
 }
 
-void GameHandler::revealCell(quint16 cellIndex)
+void GameHandler::clickCell(const quint16 &cellIndex)
 {
     if (!gameActive_)
         return;
@@ -54,34 +59,22 @@ void GameHandler::revealCell(quint16 cellIndex)
             if (field_[i] == -1)
                 emit cellOpened(i, -1);
         }
-        emit gameLost(cellIndex);
 
+        emit gameLost(cellIndex);
         return;
     }
 
-    //open cell in gui
-    emit cellOpened(cellIndex, field_[cellIndex]);
+    //reveal this cell
+    revealCell(cellIndex);
 
-    //check if empty cell and recursively open adjacent cells
-    //9 indicates that cell is already opened
-    if (field_[cellIndex]) {
-        field_[cellIndex] = 9;
-    } else {
-        //cell is empty
-        field_[cellIndex] = 9;
-        //open adjacent cells
-        for (auto adjacentCell : adjacentCells(cellIndex)) {
-            if (field_[adjacentCell] != 9) {
-                revealCell(adjacentCell);
-            }
-        }
-    }
-
-    //check for game won
+    //check for game victory
     for (int i = 0; i < field_.count(); i++) {
-        if (field_[i] == -1 || field_[i] == 9)
+        //Skip mines and revealed cells
+        if (field_[i] == -1 || field_[i] == 9) {
             continue;
+        }
 
+        //Return if there are still closed cells
         return;
     }
 
@@ -91,7 +84,7 @@ void GameHandler::revealCell(quint16 cellIndex)
 }
 
 //private
-void GameHandler::generateField(quint16 startingCellIndex)
+void GameHandler::generateField(const quint16 &startingCellIndex)
 {
     //Create list for getting mines indexes in a field
     QList<quint16> minesList;
@@ -132,12 +125,36 @@ void GameHandler::generateField(quint16 startingCellIndex)
     }
 }
 
-QList<quint16> GameHandler::adjacentCells(quint16 cellIndex)
+void GameHandler::revealCell(const quint16 &cellIndex)
 {
+    //open cell in gui
+    emit cellOpened(cellIndex, field_[cellIndex]);
+
+    //check if empty cell and recursively open adjacent cells
+    //9 indicates that cell is already opened
+    if (field_[cellIndex]) {
+        field_[cellIndex] = 9;
+    } else {
+        //cell is empty
+        field_[cellIndex] = 9;
+        //reveal adjacent cells
+        for (auto adjacentCell : adjacentCells(cellIndex)) {
+            if (field_[adjacentCell] != 9) {
+                revealCell(adjacentCell);
+            }
+        }
+    }
+}
+
+QVector<quint16> GameHandler::adjacentCells(const quint16 &cellIndex)
+{
+    QVector<quint16> adjacentCells;
+
+    //Reserve space for 8 adjacent cells
+    adjacentCells.reserve(8);
+
     //cells at left border
     if (cellIndex % cellsCountWidth_ == 0) {
-        QList<quint16> adjacentCells;
-
         adjacentCells.append(cellIndex + 1);
         //add top adjacent cells except top left corner cell
         if (cellIndex != 0) {
@@ -155,8 +172,6 @@ QList<quint16> GameHandler::adjacentCells(quint16 cellIndex)
 
     //cells at right border
     if ((cellIndex + 1) % cellsCountWidth_ == 0) {
-        QList<quint16> adjacentCells;
-
         adjacentCells.append(cellIndex - 1);
         //add top adjacent cells except top right corner cell
         if (cellIndex >= cellsCountWidth_) {
@@ -172,33 +187,25 @@ QList<quint16> GameHandler::adjacentCells(quint16 cellIndex)
         return adjacentCells;
     }
 
-    //cells at top border
-    if (cellIndex < cellsCountWidth_) {
-        return QList<quint16>{static_cast<unsigned short>(cellIndex - 1),
-                              static_cast<unsigned short>(cellIndex + 1),
-                              static_cast<unsigned short>(cellIndex + cellsCountWidth_ - 1),
-                              static_cast<unsigned short>(cellIndex + cellsCountWidth_),
-                              static_cast<unsigned short>(cellIndex + cellsCountWidth_ + 1)};
+    //add top row of adjacent cells except for cells at top border
+    if (cellIndex >= cellsCountWidth_) {
+        adjacentCells.append(cellIndex - cellsCountWidth_ - 1);
+        adjacentCells.append(cellIndex - cellsCountWidth_);
+        adjacentCells.append(cellIndex - cellsCountWidth_ + 1);
     }
 
-    //cells at bottom border
-    if (cellIndex + cellsCountWidth_ >= cellsCountHeight_ * cellsCountWidth_) {
-        return QList<quint16>{static_cast<unsigned short>(cellIndex - 1),
-                              static_cast<unsigned short>(cellIndex + 1),
-                              static_cast<unsigned short>(cellIndex - cellsCountWidth_ - 1),
-                              static_cast<unsigned short>(cellIndex - cellsCountWidth_),
-                              static_cast<unsigned short>(cellIndex - cellsCountWidth_ + 1)};
+    //add bottom row of adjacent cells except for cells at bottom border
+    if (cellIndex + cellsCountWidth_ < cellsCountHeight_ * cellsCountWidth_) {
+        adjacentCells.append(cellIndex + cellsCountWidth_ - 1);
+        adjacentCells.append(cellIndex + cellsCountWidth_);
+        adjacentCells.append(cellIndex + cellsCountWidth_ + 1);
     }
 
-    //non-border cells
-    return QList<quint16>{static_cast<unsigned short>(cellIndex - 1),
-                          static_cast<unsigned short>(cellIndex + 1),
-                          static_cast<unsigned short>(cellIndex - cellsCountWidth_ - 1),
-                          static_cast<unsigned short>(cellIndex - cellsCountWidth_),
-                          static_cast<unsigned short>(cellIndex - cellsCountWidth_ + 1),
-                          static_cast<unsigned short>(cellIndex + cellsCountWidth_ - 1),
-                          static_cast<unsigned short>(cellIndex + cellsCountWidth_),
-                          static_cast<unsigned short>(cellIndex + cellsCountWidth_ + 1)};
+    //add next and previous cell in the same row
+    adjacentCells.append(cellIndex - 1);
+    adjacentCells.append(cellIndex + 1);
+
+    return adjacentCells;
 }
 
 } // namespace minesweeper

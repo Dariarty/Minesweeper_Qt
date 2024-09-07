@@ -2,6 +2,7 @@
 #define GAMEHANDLER_H
 
 #include <QObject>
+#include <QSet>
 #include <QVector>
 
 namespace minesweeper {
@@ -17,12 +18,12 @@ public:
 
     //Start new game
     Q_INVOKABLE void initNewGame();
-    Q_INVOKABLE void initNewGame(quint8 cellsCountWidth,
-                                 quint8 cellsCountHeight,
-                                 quint32 minesCount);
+    Q_INVOKABLE void initNewGame(const quint8 &cellsCountWidth,
+                                 const quint8 &cellsCountHeight,
+                                 const quint32 &minesCount);
 
-    //Reveal a cell
-    Q_INVOKABLE void revealCell(quint16 cellIndex);
+    //Process clicking a cell
+    Q_INVOKABLE void clickCell(const quint16 &cellIndex);
 
 signals:
     void newGameStarted(quint8 cellsCountWidth, quint8 cellsCountHeight, quint32 minesCount);
@@ -49,10 +50,13 @@ private:
     bool gameActive_;
 
     //generate new field
-    void generateField(quint16 startingCellIndex);
+    void generateField(const quint16 &startingCellIndex);
 
-    //get list of adjacent cell indexes by cellIndex
-    QList<quint16> adjacentCells(quint16 cellIndex);
+    //Reveal a cell
+    void revealCell(const quint16 &cellIndex);
+
+    //get adjacent cell indexes
+    QVector<quint16> adjacentCells(const quint16 &cellIndex);
 };
 
 } // namespace minesweeper

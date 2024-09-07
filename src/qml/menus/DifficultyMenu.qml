@@ -59,6 +59,7 @@ Menu{
 
             //Add new custom gamemode
             difficultyModesModel.append({
+                //check for constraints
                 name:
                     cellsCountWidth.toString() + "x" + cellsCountHeight.toString() + " | " +
                     qsTr("Mines: ") + minesCount.toString(),

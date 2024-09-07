@@ -85,8 +85,9 @@ Dialog {
                     editable: true
 
                     //Field Constraints are from 5x5 to 50x50
-                    from: 5
-                    to: 100
+                    from: 2
+                    //to: 99
+                    to: 1000
 
                     //default value
                     value: 16
@@ -140,8 +141,9 @@ Dialog {
                     editable: true
 
                     //field contraints are from 5x5 to 50x50
-                    from: 5
-                    to: 100
+                    from: 2
+                    //to: 99
+                    to: 1000
 
                     //default value
                     value: 16

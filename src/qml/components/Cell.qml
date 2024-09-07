@@ -174,7 +174,7 @@ MouseArea{
 
         //Reveal cell if not opened
         if(mouse.button === Qt.LeftButton && !cell.flagged && !cell.opened){
-            GameHandler.revealCell(index)
+            GameHandler.clickCell(index)
         }
 
     }
