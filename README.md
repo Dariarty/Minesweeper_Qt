@@ -3,7 +3,10 @@
 [![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/Dariarty/Minesweeper_Qt/blob/main/README.md)
 [![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/Dariarty/Minesweeper_Qt/blob/main/README.ru.md)
 
-Minesweeper Game with improved classic GUI made with C++/Qt/QML
+<a href="https://dariarty.github.io/Minesweeper_Qt/" title="GitHub Pages link">Play in browser - WebAssembly version hosted on GitHub Pages</a>
+
+Minesweeper game with improved classic GUI.</br>
+Cross-platform application made with C++/Qt/QML for for Windows, Linux and WebAssembly.</br>
 
 # Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
