@@ -8,6 +8,13 @@
 Minesweeper game with improved classic GUI.</br>
 Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssembly.</br>
 
+## Features
+
+* Classic minesweeper gameplay with improved GUI</br>
+* Customizable difficulty options (field height and width, number of mines)</br>
+* Resizable scale of field</br>
+* Desktop and WebAssembly versions</br>
+
 # Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
 
