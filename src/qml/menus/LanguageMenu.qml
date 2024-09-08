@@ -7,8 +7,8 @@ import "../components"
 
 Menu{
     id: languageMenu
-    title: qsTr("Language")
 
+    title: qsTr("Language")
     topPadding: 0
     bottomPadding: 0
 
@@ -28,21 +28,18 @@ Menu{
     //Instantiator to dynamically load menu items from model
     Instantiator{
         id: languagesInstantiator
+
         model: languagesModel
+
         delegate: CheckableMenuItem {
             text: name
-
             ButtonGroup.group: languageButtonGroup
-
             onTriggered: Translator.setLanguage(lang)
-
-            Component.onCompleted: {
-                if(Translator.language===lang) checked = true
-            }
-
+            Component.onCompleted: if(Translator.language===lang) checked = true
         }
 
         onObjectAdded: (index, object) => languageMenu.insertItem(index, object)
         onObjectRemoved: (index, object) => languageMenu.removeItem(object)
     }
+
 }

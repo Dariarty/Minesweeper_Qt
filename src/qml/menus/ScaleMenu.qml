@@ -8,14 +8,15 @@ import "../dialogs"
 
 Menu{
     id: scaleMenu
-    title: qsTr("Cells scale")
 
     //Default number of scale options
     property int defaultNumberOfOptions
 
+    title: qsTr("Cells scale")
     contentWidth: UiManager.isWebAssembly ? 300 : 205
     topPadding: 0
     bottomPadding: 0
+    Component.onCompleted: defaultNumberOfOptions = cellScaleModel.count
 
     //Model to store cells scale options
     ListModel{
@@ -30,8 +31,6 @@ Menu{
         ListElement{ name: qsTr("Huge"); cellScale: 50; chosen: false }
         ListElement{ name: qsTr("Gigantic"); cellScale: 70; chosen: false }
     }
-
-    Component.onCompleted: defaultNumberOfOptions = cellScaleModel.count
 
     //Add new custom scale option
     Connections{
@@ -55,23 +54,17 @@ Menu{
     //Instantiator to dynamically load menu items from model
     Instantiator{
         id: cellScaleInstantiator
+
         model: cellScaleModel
         delegate: CheckableMenuItem {
             text: name + " | " + cellScale + "x" + cellScale
-
             ButtonGroup.group: cellScaleButtonGroup
-
+            checked: chosen
+            Component.onCompleted: if(chosen) triggered()
             onTriggered: {
                 chosen = true
                 root.cellPixelSize = cellScale
             }
-
-            checked: chosen
-
-            Component.onCompleted: {
-                if(chosen) triggered()
-            }
-
         }
 
         onObjectAdded: (index, object) => scaleMenu.insertItem(index, object)
@@ -94,9 +87,7 @@ Menu{
         id: customCellScaleAction
 
         text: qsTr("Custom cell scale...")
-
         onTriggered: scaleDialog.open()
-
     }
 
 }

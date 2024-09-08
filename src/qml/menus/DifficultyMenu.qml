@@ -7,15 +7,14 @@ import "../components"
 
 Menu{
     id: difficultyMenu
+
+    property int defaultNumberOfOptions
+
     title: qsTr("Change difficulty")
-
     contentWidth: UiManager.isWebAssembly ? 270 : 200
-
     topPadding: 0
     bottomPadding: 0
-
-    //Default number of scale options
-    property int defaultNumberOfOptions
+    Component.onCompleted: defaultNumberOfOptions = difficultyModesModel.count
 
     //Model with difficulty modes
     ListModel{
@@ -45,8 +44,6 @@ Menu{
             chosen: false
         }
     }
-
-    Component.onCompleted: defaultNumberOfOptions = difficultyModesModel.count
 
     //Add new custom gameMode option
     Connections{
@@ -79,22 +76,17 @@ Menu{
     //Instantiator to dynamically load menu item from model
     Instantiator{
         id: difficultyModeInstantiator
+
         model: difficultyModesModel
+
         delegate: CheckableMenuItem {
             text: name
-
             ButtonGroup.group: difficultyButtonGroup
-
+            checked: chosen
+            Component.onCompleted: if(chosen) triggered()
             onTriggered: {
                 GameHandler.initNewGame(fieldWidth, fieldHeight, mines)
-
                 chosen = true
-            }
-
-            checked: chosen
-
-            Component.onCompleted: {
-                if(chosen) triggered()
             }
         }
 
@@ -116,7 +108,6 @@ Menu{
     //Add new custom gamemode
     Action{
         text: qsTr("New custom rules...")
-
         onTriggered: gameModeDialog.open()
     }
 }

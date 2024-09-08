@@ -9,15 +9,74 @@ import "../dialogs"
 
 ApplicationWindow{
     id: root
-    visible: true
-    title: qsTr("Minesweeper")
 
     //Size of single field cell in pixels
-    property real cellPixelSize
+    property int cellPixelSize
 
     //Count of cells in width and height
     property int fieldCellsCountWidth
     property int fieldCellsCountHeight
+
+    //height of game content with MenuBar
+    property int referenceGameHeight: {
+        (fieldCellsCountHeight + 3.5) * cellPixelSize + topMenu.contentItem.height
+    }
+    //width of game content
+    property int referenceGameWidth: {
+        (fieldCellsCountWidth + 1) * cellPixelSize
+    }
+    //Height of window in windowed mode
+    property int windowedHeight: {
+        //Adjusted for not fitting into available screen space and too little window size
+        Math.max(Math.min(referenceGameHeight,
+                          screen.desktopAvailableHeight - UiManager.titleBarSize),
+                 400)
+    }
+    //Width of window in windowed mode
+    property int windowedWidth: {
+        //Adjusted for not fitting into available screen space and too little window size
+        Math.max(Math.min(referenceGameWidth,
+                          screen.desktopAvailableWidth),
+                 400)
+    }
+
+    signal scaleOptionAdded(int newCellSize)
+    signal fieldPressChanged(bool fieldPressed)
+    signal difficultyOptionAdded(int cellsCountWidth, int cellsCountHeight, int minesCount)
+    signal flagUpdated(bool isAdded)
+
+    function centerWindow(){
+        if(root.visibility == Window.Windowed){
+            root.x = ( screen.desktopAvailableWidth - root.windowedWidth ) / 2
+            root.y = (screen.desktopAvailableHeight + UiManager.titleBarSize - root.windowedHeight) / 2
+        }
+    }
+
+    function repositionWindow(){
+        if(root.visibility == Window.Windowed){
+            if(root.x < 0) root.x = 0
+
+            if(root.y < UiManager.titleBarSize) root.y = UiManager.titleBarSize
+
+            if(root.x + root.windowedWidth > screen.desktopAvailableWidth)
+                root.x = screen.desktopAvailableWidth - root.windowedWidth
+
+            if(root.y + root.windowedHeight > screen.desktopAvailableHeight)
+                root.y = screen.desktopAvailableHeight - root.windowedHeight
+        }
+    }
+
+    visible: true
+    title: qsTr("Minesweeper")
+
+    background: Rectangle{
+        anchors.fill: parent
+        color: "#d0d5db"
+    }
+
+    menuBar: MainMenuBar {
+        id: topMenu
+    }
 
     //When entering windowed mode, resize window into reference size and center window
     onVisibilityChanged: (visibility) => {
@@ -30,31 +89,6 @@ ApplicationWindow{
 
             centerWindow()
         }
-    }
-
-    //height of game content with MenuBar
-    property int referenceGameHeight: {
-        (fieldCellsCountHeight + 3.5) * cellPixelSize + topMenu.contentItem.height
-    }
-    //width of game content
-    property int referenceGameWidth: {
-        (fieldCellsCountWidth + 1) * cellPixelSize
-    }
-
-    //Height of window in windowed mode
-    property int windowedHeight: {
-        //Adjusted for not fitting into available screen space and too little window size
-        Math.max(Math.min(referenceGameHeight,
-                          screen.desktopAvailableHeight - UiManager.titleBarSize),
-                 400)
-    }
-
-    //Width of window in windowed mode
-    property int windowedWidth: {
-        //Adjusted for not fitting into available screen space and too little window size
-        Math.max(Math.min(referenceGameWidth,
-                          screen.desktopAvailableWidth),
-                 400)
     }
 
     //If windowed height changed, update window height value if in windowed mode
@@ -92,36 +126,6 @@ ApplicationWindow{
         }
     }
 
-    function centerWindow(){
-        if(root.visibility == Window.Windowed){
-            root.x = ( screen.desktopAvailableWidth - root.windowedWidth ) / 2
-            root.y = (screen.desktopAvailableHeight + UiManager.titleBarSize - root.windowedHeight) / 2
-        }
-    }
-
-    function repositionWindow(){
-        if(root.visibility == Window.Windowed){
-            if(root.x < 0) root.x = 0
-
-            if(root.y < UiManager.titleBarSize) root.y = UiManager.titleBarSize
-
-            if(root.x + root.windowedWidth > screen.desktopAvailableWidth)
-                root.x = screen.desktopAvailableWidth - root.windowedWidth
-
-            if(root.y + root.windowedHeight > screen.desktopAvailableHeight)
-                root.y = screen.desktopAvailableHeight - root.windowedHeight
-        }
-    }
-
-    background: Rectangle{
-        anchors.fill: parent
-        color: "#d0d5db"
-    }
-
-    menuBar: MainMenuBar {
-        id: topMenu
-    }
-
     Flickable{
         id: flick
 
@@ -130,7 +134,9 @@ ApplicationWindow{
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.topMargin: cellPixelSize * 0.125
-
+        boundsBehavior: Flickable.DragAndOvershootBounds
+        contentHeight: flickContentWrapper.height
+        contentWidth: flickContentWrapper.width
         interactive: flick.contentHeight > flick.height || flick.contentWidth > flick.width
         flickableDirection: {
             if(flick.contentHeight > flick.height && flick.contentWidth > flick.width)
@@ -140,12 +146,10 @@ ApplicationWindow{
             else
                 Flickable.HorizontalFlick
         }
-        boundsBehavior: Flickable.DragAndOvershootBounds
-        contentHeight: flickContentWrapper.height
-        contentWidth: flickContentWrapper.width
 
         Rectangle{
             id: flickContentWrapper
+
             width: Math.max(referenceGameWidth, flick.width)
             height: Math.max(referenceGameHeight - topMenu.contentItem.height, flick.height)
             color: "transparent"
@@ -186,6 +190,7 @@ ApplicationWindow{
                 //Background Rectangle
                 Rectangle{
                     id: fieldRectangleBackground
+
                     anchors.fill: paddingRectangle
                     anchors.margins: cellPixelSize / 8
                     color: "lightgrey"
@@ -196,19 +201,20 @@ ApplicationWindow{
             Rectangle {
                 id: headerRect
 
-                anchors{
-                    top: parent.top
-                    topMargin: cellPixelSize * 0.25
-                               + (flickContentWrapper.height - (referenceGameHeight - topMenu.contentItem.height)) / 2
-                    rightMargin: cellPixelSize * 0.25
-                    leftMargin: cellPixelSize * 0.25
-                    horizontalCenter: parent.horizontalCenter
-                }
-
                 height: cellPixelSize * 2.25
                 width: (fieldCellsCountWidth + 0.25) * cellPixelSize
-
                 color: "grey"
+                anchors{
+                    top: parent.top
+                    horizontalCenter: parent.horizontalCenter
+                    rightMargin: cellPixelSize * 0.25
+                    leftMargin: cellPixelSize * 0.25
+                    topMargin: {
+                        cellPixelSize * 0.25 +
+                        (flickContentWrapper.height -
+                        (referenceGameHeight - topMenu.contentItem.height)) / 2
+                    }
+                }
 
                 Shape{
                     width: parent.width
@@ -241,7 +247,7 @@ ApplicationWindow{
 
                 width: (fieldCellsCountWidth + 0.25) * cellPixelSize
                 height: (fieldCellsCountHeight + 0.25) * cellPixelSize
-
+                color: "grey"
                 anchors{
                     top: headerRect.bottom
                     left: root.left
@@ -249,8 +255,6 @@ ApplicationWindow{
                     margins: cellPixelSize * 0.25
                     horizontalCenter: parent.horizontalCenter
                 }
-
-                color: "grey"
 
                 Shape{
                     width: parent.width
@@ -274,23 +278,18 @@ ApplicationWindow{
 
                 GameField{
                     id: gameField
+
                     height: parent.height - cellPixelSize * 0.25
                     width: parent.width - cellPixelSize * 0.25
                     anchors.centerIn: parent
                     anchors.margins: cellPixelSize * 0.125
                 }
+
             }
 
         }
+
     }
-
-    signal scaleOptionAdded(int newCellSize)
-
-    signal fieldPressChanged(bool fieldPressed)
-
-    signal difficultyOptionAdded(int cellsCountWidth, int cellsCountHeight, int minesCount)
-
-    signal flagUpdated(bool isAdded)
 
     //Dialog to choose cell scale
     ScaleDialog{
@@ -311,4 +310,5 @@ ApplicationWindow{
     GameRulesDialog{
         id: gameRulesDialog
     }
+
 }
