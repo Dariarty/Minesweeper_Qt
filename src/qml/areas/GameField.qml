@@ -9,34 +9,11 @@ import "../components"
 Rectangle {
     id: fieldRootItem
 
+    color: "lightgrey"
+
     FontLoader{
         id: bungeeFont
         source: "qrc:/resources/fonts/Bungee-Regular.ttf"
-    }
-
-    color: "lightgrey"
-
-    ListModel{
-        id: fieldModel
-    }
-
-    GridView{
-        id: fieldGridView
-        anchors.fill: parent
-
-        interactive: false
-
-        model: fieldModel
-
-        cellHeight: cellPixelSize
-        cellWidth: cellPixelSize
-
-        delegate: Cell{
-            id: cell
-            cellState: elementState
-            parent: fieldGridView
-        }
-
     }
 
     Connections{
@@ -51,6 +28,27 @@ Rectangle {
 
         function onCellOpened(cellIndex, cellState) {
             fieldModel.get(cellIndex).elementState = cellState
+        }
+
+    }
+
+    ListModel{
+        id: fieldModel
+    }
+
+    GridView{
+        id: fieldGridView
+
+        anchors.fill: parent
+        interactive: false
+        model: fieldModel
+        cellHeight: cellPixelSize
+        cellWidth: cellPixelSize
+
+        delegate: Cell{
+            id: cell
+            cellState: elementState
+            parent: fieldGridView
         }
 
     }

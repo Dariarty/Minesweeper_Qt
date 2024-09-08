@@ -3,8 +3,8 @@ import QtQuick.Shapes
 
 Rectangle{
     id: timerRect
-    color: "grey"
 
+    color: "grey"
     anchors.rightMargin: cellPixelSize * 0.2
     anchors.topMargin: cellPixelSize * 0.2
     anchors.bottomMargin: cellPixelSize * 0.2
@@ -12,6 +12,7 @@ Rectangle{
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     width: timerText.width
+    onWidthChanged: parent.reEnableElements()
 
     Shape{
         width: parent.width
@@ -35,12 +36,14 @@ Rectangle{
 
     Rectangle{
         id: innerRectangle
+
         anchors.fill: parent
         color: "black"
         anchors.margins: cellPixelSize / 16
 
         Text{
             id: shadowText
+
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right
@@ -56,13 +59,12 @@ Rectangle{
 
         Text{
             id: timerText
-            color: "red"
 
+            color: "red"
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.centerIn: parent
-
             font.family: dseg7Font.name
             verticalAlignment: Qt.AlignVCenter
             font.pixelSize: cellPixelSize * 1.3
@@ -78,13 +80,11 @@ Rectangle{
                 function onTimerTick(){
                     timerText.text = Number(timerText.text) + 1
                 }
+
             }
 
         }
 
     }
 
-    onWidthChanged: {
-        parent.reEnableElements()
-    }
 }

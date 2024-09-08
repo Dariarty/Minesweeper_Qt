@@ -6,34 +6,6 @@ import "../components"
 
 Rectangle {
     id: header
-    height: parent.height - cellPixelSize * 0.25
-    width: parent.width - cellPixelSize * 0.25
-    anchors.margins: cellPixelSize * 0.125
-    anchors.centerIn: parent
-
-    onWidthChanged: reEnableElements()
-
-    FontLoader{
-        id: dseg7Font
-        source: "qrc:/resources/fonts/DSEG7Classic-Bold.ttf"
-    }
-
-    //Text with number of unflagged mines
-    MinesCounter{
-        id: minesCounter
-    }
-
-    //Restart button
-    ResetButton{
-        id: resetButton
-    }
-
-    //Game Timer
-    GameTimer{
-        id: timer
-    }
-
-    color: "lightgrey"
 
     function reEnableElements(){
         if(Math.max(minesCounter.width, timer.width) * 2
@@ -55,6 +27,31 @@ Rectangle {
                             true : false
             }
         }
+    }
+
+    anchors.margins: cellPixelSize * 0.125
+    anchors.centerIn: parent
+    height: parent.height - cellPixelSize * 0.25
+    width: parent.width - cellPixelSize * 0.25
+    color: "lightgrey"
+
+    onWidthChanged: reEnableElements()
+
+    FontLoader{
+        id: dseg7Font
+        source: "qrc:/resources/fonts/DSEG7Classic-Bold.ttf"
+    }
+
+    MinesCounter{
+        id: minesCounter
+    }
+
+    ResetButton{
+        id: resetButton
+    }
+
+    GameTimer{
+        id: timer
     }
 
 }

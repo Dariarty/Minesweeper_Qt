@@ -14,23 +14,21 @@ MenuBar{
             color: "white"
 
             Rectangle {
-                color: "grey"
+                anchors.bottom: parent.bottom
                 width: parent.width
                 height: 1
-                anchors.bottom: parent.bottom
+                color: "grey"
             }
     }
 
-    //Game Menu
     Menu{
         id: gameMenu
-        title: qsTr("Game")
 
+        title: qsTr("Game")
         contentWidth: UiManager.isWebAssembly ? 250 : 200
         topPadding: 0
         bottomPadding: 0
 
-        //Menu to choose difficulty mode
         DifficultyMenu{
             id: difficultyMenu
         }
@@ -41,29 +39,27 @@ MenuBar{
         }
     }
 
-    //Settings Menu
     Menu{
-        title: qsTr("Settings")
+        id: settingsMenu
 
+        title: qsTr("Settings")
         contentWidth: UiManager.isWebAssembly ? 250 : 200
         topPadding: 0
         bottomPadding: 0
 
-        //Menu to change scale of cells
         ScaleMenu{
             id: scaleMenu
         }
 
-        //Menu to changle language
         LanguageMenu{
             id: languageMenu
         }
     }
 
-    //Help Menu
     Menu{
-        title: qsTr("Help")
+        id: helpMenu
 
+        title: qsTr("Help")
         contentWidth: UiManager.isWebAssembly ? 250 : 200
         topPadding: 0
         bottomPadding: 0

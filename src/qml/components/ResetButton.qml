@@ -4,20 +4,21 @@ import QtQuick.Shapes
 
 MouseArea{
     id: restartButton
+
     anchors.centerIn: parent
     height: parent.height * 0.8
     width:  parent.height * 0.8
 
-    onClicked: {
-        GameHandler.initNewGame()
-    }
+    onClicked: GameHandler.initNewGame()
+    onWidthChanged: parent.reEnableElements()
 
     Rectangle{
         id: restartButtonRect
+
         anchors.fill: parent
         color: "grey"
 
-        //Restart button shadow
+        //Button shadow
         Shape{
             visible: !restartButton.containsPress
             width: parent.width
@@ -38,17 +39,16 @@ MouseArea{
         Rectangle{
             id: restartButtonContent
 
+            color: "lightgrey"
             anchors.fill: parent
             anchors.leftMargin: cellPixelSize / 6
             anchors.topMargin: cellPixelSize / 6
-            anchors.rightMargin: restartButton.containsPress ?
-                                     cellPixelSize / 12 : cellPixelSize / 6
-            anchors.bottomMargin: restartButton.containsPress ?
-                                      cellPixelSize / 12 : cellPixelSize / 6
-            color: "lightgrey"
+            anchors.rightMargin: restartButton.containsPress ? cellPixelSize / 12 : cellPixelSize / 6
+            anchors.bottomMargin: restartButton.containsPress ? cellPixelSize / 12 : cellPixelSize / 6
 
             Image{
                 id: faceImage
+
                 state: "normal"
                 antialiasing: true
                 sourceSize.width: faceImage.width * 3
@@ -94,12 +94,13 @@ MouseArea{
                     function onNewGameStarted(){
                         faceImage.state = "normal"
                     }
+
                 }
+
             }
+
         }
+
     }
 
-    onWidthChanged: {
-        parent.reEnableElements()
-    }
 }
