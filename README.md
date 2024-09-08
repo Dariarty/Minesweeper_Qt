@@ -10,7 +10,7 @@ Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssemb
 
 ## Features
 
-* Classic minesweeper gameplay with improved GUI</br>
+* Classic minesweeper gameplay with fancy GUI</br>
 * Customizable difficulty options (field height and width, number of mines)</br>
 * Resizable scale of field</br>
 * Desktop and WebAssembly versions</br>
