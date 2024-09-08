@@ -15,7 +15,7 @@ Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssemb
 * Resizable scale of field</br>
 * Desktop and WebAssembly versions</br>
 
-# Attributions
+## Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
 
 <a href="https://www.flaticon.com/free-icon/close_1828666?term=cross&page=1&position=9&origin=search&related_id=1828666" title="cross icon">Cross icon created by Pixel Perfect - Flaticon</a> </br>
