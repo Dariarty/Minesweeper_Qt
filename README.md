@@ -17,3 +17,7 @@ Cross-platform application made with C++/Qt/QML for for Windows, Linux and WebAs
 
 <a href="https://www.freepik.com/icon/flag_16771882#fromView=keyword&page=1&position=91&uuid=a58f54fa-5ea7-4ac9-9fae-a7f2fb24842f" title="flag icon">Flag icon created by sonnycandra - Freepik</a>
 
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
