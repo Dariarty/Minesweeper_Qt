@@ -1,4 +1,8 @@
 # Minesweeper_Qt
+
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/Dariarty/Minesweeper_Qt/blob/main/README.md)
+[![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/Dariarty/Minesweeper_Qt/blob/main/README.ru.md)
+
 Minesweeper Game with improved classic GUI made with C++/Qt/QML
 
 # Attributions
