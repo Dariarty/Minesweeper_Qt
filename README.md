@@ -42,6 +42,21 @@ Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssemb
   <img src="assets/en_US/scale.png" />
 </p>
 
+## Building Source Code
+App supports Windows, Linux and WebAssembly (using Qt for WebAssembly). </br>
+Prerequisites: Qt 6.5+, GCC (or other) C++ compiler, Qt Creator, Qt Linguist </br>
+1.  Download and install Qt6 and Qt Creator.</br>
+2.  Configure Qt Creator Kit for Desktop or WebAssembly using Emscripten. </br>
+3.  Clone the repo.
+     ```sh
+     git clone https://github.com/Dariarty/Minesweeper_Qt.git
+     ```
+4.  Open src/minesweeper.pro in Qt Creator.</br>
+5.  Run lrelease tool to read the TS files and produce the QM translation files. </br>
+    Qt Creator > Tools > External > Linguist > Release Translations (lrelease) </br>
+7.  Run qmake.</br>
+8.  Build the project in Qt Creator.</br>
+
 ## Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
 
