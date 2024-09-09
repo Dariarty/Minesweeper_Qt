@@ -32,6 +32,11 @@ Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssemb
   <img src="assets/expert.png" />
 </p>
 
+<h3 align="center">Dialog for choosing custom game rules</h3>
+<p align="center">
+  <img src="assets/rules.png" />
+</p>
+
 ## Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
 
