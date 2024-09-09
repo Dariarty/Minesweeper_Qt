@@ -18,9 +18,18 @@ Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssemb
 ## Screenshots
 
 <h3 align="center">Beginner</h3>
-
 <p align="center">
   <img src="assets/beginner.png" />
+</p>
+
+<h3 align="center">Intermediate</h3>
+<p align="center">
+  <img src="assets/intermediate.png" />
+</p>
+
+<h3 align="center">Expert</h3>
+<p align="center">
+  <img src="assets/expert.png" />
 </p>
 
 ## Attributions
