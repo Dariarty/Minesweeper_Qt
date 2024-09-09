@@ -5,7 +5,7 @@
 
 <a href="https://dariarty.github.io/Minesweeper_Qt/" title="GitHub Pages link">Играть в браузере - версия WebAssembly на хостинге GitHub Pages</a>
 
-Игра "Сапер" с улучшенным классическим интерфейсом</br>
+Игра "Сапер" с улучшенным классическим GUI.</br>
 Кроссплатформенное приложение, написанное на C++/Qt/QML для Windows, Linux и WebAssembly.</br>
 
 ## Функции приложения
