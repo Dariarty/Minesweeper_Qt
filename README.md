@@ -15,6 +15,14 @@ Cross-platform application made with C++/Qt/QML for Windows, Linux and WebAssemb
 * Resizable scale of field</br>
 * Desktop and WebAssembly versions</br>
 
+## Screenshots
+
+<h3 align="center">Beginner</h3>
+
+<p align="center">
+  <img src="assets/beginner.png" />
+</p>
+
 ## Attributions
 <a href="https://www.flaticon.com/free-icons/mine" title="mine icons">Mine icons created by Creaticca Creative Agency - Flaticon</a> </br>
 
