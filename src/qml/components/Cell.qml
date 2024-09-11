@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Controls 2.15
 import QtQuick.Shapes
 import QtQml.Models
@@ -41,6 +41,7 @@ MouseArea{
         }
     }
 
+    pressAndHoldInterval: 600
     height: cellPixelSize
     width: cellPixelSize
     acceptedButtons: Qt.LeftButton | Qt.RightButton
