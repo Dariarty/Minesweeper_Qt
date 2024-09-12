@@ -18,19 +18,19 @@ public:
 
     //Start new game
     Q_INVOKABLE void initNewGame();
-    Q_INVOKABLE void initNewGame(const quint8 &cellsCountWidth,
-                                 const quint8 &cellsCountHeight,
-                                 const quint32 &minesCount);
+    Q_INVOKABLE void initNewGame(const qint8 &cellsCountWidth,
+                                 const qint8 &cellsCountHeight,
+                                 const qint32 &minesCount);
 
     //Process clicking a cell
-    Q_INVOKABLE void clickCell(const quint16 &cellIndex);
+    Q_INVOKABLE void clickCell(const qint16 &cellIndex);
 
 signals:
-    void newGameStarted(quint8 cellsCountWidth, quint8 cellsCountHeight, quint32 minesCount);
+    void newGameStarted(qint8 cellsCountWidth, qint8 cellsCountHeight, qint32 minesCount);
 
-    void cellOpened(quint16 cellIndex, qint8 cellState);
+    void cellOpened(qint16 cellIndex, qint8 cellState);
 
-    void gameLost(quint16 losingIndex);
+    void gameLost(qint16 losingIndex);
 
     void timerTick();
 
@@ -38,9 +38,9 @@ signals:
 
 private:
     //Game Parameters
-    quint8 cellsCountWidth_;
-    quint8 cellsCountHeight_;
-    quint32 minesCount_;
+    qint8 cellsCountWidth_;
+    qint8 cellsCountHeight_;
+    qint32 minesCount_;
 
     /// game field cell values:
     ///     -1 : a cell containing a bomb
@@ -52,13 +52,13 @@ private:
     bool gameActive_;
 
     //generate new field
-    void generateField(const quint16 &startingCellIndex);
+    void generateField(const qint16 &startingCellIndex);
 
     //Reveal a cell
-    void revealCell(const quint16 &cellIndex);
+    void revealCell(const qint16 &cellIndex);
 
     //get adjacent cell indexes
-    QVector<quint16> adjacentCells(const quint16 &cellIndex);
+    QVector<qint16> adjacentCells(const qint16 &cellIndex);
 
     //timer for game time
     QScopedPointer<QTimer> timer_;

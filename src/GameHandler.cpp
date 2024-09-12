@@ -34,9 +34,9 @@ void GameHandler::initNewGame()
     emit newGameStarted(cellsCountWidth_, cellsCountHeight_, minesCount_);
 }
 
-void GameHandler::initNewGame(const quint8 &cellsCountWidth,
-                              const quint8 &cellsCountHeight,
-                              const quint32 &minesCount)
+void GameHandler::initNewGame(const qint8 &cellsCountWidth,
+                              const qint8 &cellsCountHeight,
+                              const qint32 &minesCount)
 {
     //write new values
     cellsCountWidth_ = cellsCountWidth;
@@ -46,7 +46,7 @@ void GameHandler::initNewGame(const quint8 &cellsCountWidth,
     initNewGame();
 }
 
-void GameHandler::clickCell(const quint16 &cellIndex)
+void GameHandler::clickCell(const qint16 &cellIndex)
 {
     if (!gameActive_)
         return;
@@ -92,10 +92,10 @@ void GameHandler::clickCell(const quint16 &cellIndex)
 }
 
 //private
-void GameHandler::generateField(const quint16 &startingCellIndex)
+void GameHandler::generateField(const qint16 &startingCellIndex)
 {
     //Create list for getting mines indexes in a field
-    QList<quint16> minesList;
+    QList<qint16> minesList;
     minesList.resize(cellsCountHeight_ * cellsCountWidth_ - 1);
     for (int i = 0; i < minesList.count(); i++) {
         minesList[i] = i;
@@ -115,7 +115,7 @@ void GameHandler::generateField(const quint16 &startingCellIndex)
     field_.resize(cellsCountHeight_ * cellsCountWidth_);
 
     // write mines into field
-    for (QList<quint16>::iterator i = minesList.begin(); i - minesList.begin() < minesCount_; i++) {
+    for (QList<qint16>::iterator i = minesList.begin(); i - minesList.begin() < minesCount_; i++) {
         field_[*i] = -1;
     }
 
@@ -137,7 +137,7 @@ void GameHandler::generateField(const quint16 &startingCellIndex)
     timer_->start();
 }
 
-void GameHandler::revealCell(const quint16 &cellIndex)
+void GameHandler::revealCell(const qint16 &cellIndex)
 {
     //open cell in gui
     emit cellOpened(cellIndex, field_[cellIndex]);
@@ -158,9 +158,9 @@ void GameHandler::revealCell(const quint16 &cellIndex)
     }
 }
 
-QVector<quint16> GameHandler::adjacentCells(const quint16 &cellIndex)
+QVector<qint16> GameHandler::adjacentCells(const qint16 &cellIndex)
 {
-    QVector<quint16> adjacentCells;
+    QVector<qint16> adjacentCells;
 
     //Reserve space for 8 adjacent cells
     adjacentCells.reserve(8);
